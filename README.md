@@ -19,30 +19,28 @@ Install
 
 Install from pip for the latest stable release (not avialble now):
 
-::
-
+```
     pip install FAPSDemonstratorAPI
-
+```
 Install from github for the latest changes:
 
-::
-
+```
     pip install https://github.com/jupiterbak/DEMONSTRATOR_PROGRAM_API.git
-
+```
 If you have the files checked out for development:
 
-::
+```
 
     git clone https://github.com/jupiterbak/DEMONSTRATOR_PROGRAM_API.git
     cd DEMONSTRATOR_PROGRAM_API
     python setup.py -f
-
+```
 Example
 -------
 Here is the most simple example of use, generate a new program and execute it.
 Please make sure you are in the FAPS Network:
 
-.. code :: python
+```
 
     import FAPSDemonstratorAPI    
     demonstrator_program = FAPSDemonstratorAPI.Program()
@@ -86,8 +84,10 @@ Please make sure you are in the FAPS Network:
                 )
                 demonstrator_program.execute()
     else:
-        print('Connection cannot be established to the Demonstrator')
-  
+        print('Connection cannot be established to the Demonstrator') 
+
+```
+
 Credits
 -------------
 Jupiter Bakakeu (jupiter.bakakeu@faps.fau.de/jupiter.bakakeu@gmail.com)
