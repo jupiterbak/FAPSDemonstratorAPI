@@ -33,7 +33,7 @@ If you have the files checked out for development:
 
     git clone https://github.com/jupiterbak/DEMONSTRATOR_PROGRAM_API.git
     cd DEMONSTRATOR_PROGRAM_API
-    python setup.py -f
+    python setup.py install -f
 ```
 Example
 -------
