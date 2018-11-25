@@ -339,7 +339,7 @@ class Command(Enum):
                     "descript_2": "-"
                 },
                 "en": {
-                    "descript_1": "Start motion program with the specified block number",
+                    "descript_1": "Start motion FAPSDemonstratorAPI with the specified block number",
                     "descript_2": "-"
                 }
             },
@@ -349,7 +349,7 @@ class Command(Enum):
                     "descript_2": "-"
                 },
                 "en": {
-                    "descript_1": "Unconditional jump within the motion program",
+                    "descript_1": "Unconditional jump within the motion FAPSDemonstratorAPI",
                     "descript_2": "-"
                 }
             },
@@ -359,7 +359,7 @@ class Command(Enum):
                     "descript_2": "-"
                 },
                 "en": {
-                    "descript_1": "Halt motion program execution until condition is met",
+                    "descript_1": "Halt motion FAPSDemonstratorAPI execution until condition is met",
                     "descript_2": "-"
                 }
             },
@@ -369,7 +369,7 @@ class Command(Enum):
                     "descript_2": "der Bahnposition erfüllt ist"
                 },
                 "en": {
-                    "descript_1": "Halt motion program execution until path position condition is met",
+                    "descript_1": "Halt motion FAPSDemonstratorAPI execution until path position condition is met",
                     "descript_2": "-"
                 }
             },
@@ -379,7 +379,7 @@ class Command(Enum):
                     "descript_2": "der Einzelachsposition erfüllt ist"
                 },
                 "en": {
-                    "descript_1": "Halt motion program execution until axis position condition is met",
+                    "descript_1": "Halt motion FAPSDemonstratorAPI execution until axis position condition is met",
                     "descript_2": "-"
                 }
             },
@@ -399,8 +399,8 @@ class Command(Enum):
                     "descript_2": "-"
                 },
                 "en": {
-                    "descript_1": "Execute motion program step by step in ascending order of block numbers",
-                    "descript_2": "Each issuing of the command triggers execution of the next program block"
+                    "descript_1": "Execute motion FAPSDemonstratorAPI step by step in ascending order of block numbers",
+                    "descript_2": "Each issuing of the command triggers execution of the next FAPSDemonstratorAPI block"
                 }
             },
             "CMD_STOP_PROGRAM": {
@@ -409,7 +409,7 @@ class Command(Enum):
                     "descript_2": "-"
                 },
                 "en": {
-                    "descript_1": "Stop motion program, after completing execution of current block",
+                    "descript_1": "Stop motion FAPSDemonstratorAPI, after completing execution of current block",
                     "descript_2": "-"
                 }
             },
@@ -419,7 +419,7 @@ class Command(Enum):
                     "descript_2": "(alte Restwege, wenn vorhanden werden zu Ende verfahren)"
                 },
                 "en": {
-                    "descript_1": "Continue previous stopped motion program,",
+                    "descript_1": "Continue previous stopped motion FAPSDemonstratorAPI,",
                     "descript_2": "any distances-to-go are traveled to their end"
                 }
             },
@@ -579,7 +579,7 @@ class Command(Enum):
                     "descript_2": "-"
                 },
                 "en": {
-                    "descript_1": "Conditional jump within the motion program",
+                    "descript_1": "Conditional jump within the motion FAPSDemonstratorAPI",
                     "descript_2": "-"
                 }
             },
@@ -589,7 +589,7 @@ class Command(Enum):
                     "descript_2": "-"
                 },
                 "en": {
-                    "descript_1": "Conditional jump within the motion program",
+                    "descript_1": "Conditional jump within the motion FAPSDemonstratorAPI",
                     "descript_2": "-"
                 }
             },
@@ -599,7 +599,7 @@ class Command(Enum):
                     "descript_2": "erhalten werden"
                 },
                 "en": {
-                    "descript_1": "Stop motion program, abort any active motion,",
+                    "descript_1": "Stop motion FAPSDemonstratorAPI, abort any active motion,",
                     "descript_2": "distances-to-go remain stored"
                 }
             },
@@ -997,11 +997,11 @@ class Command(Enum):
             "CMD_SET_MOTION_PROG_STATE": {
                 "de": {
                     "descript_1": "Ausgabe des Programmstatus an die Variable",
-                    "descript_2": "...program.i32MotionProgramState"
+                    "descript_2": "...FAPSDemonstratorAPI.i32MotionProgramState"
                 },
                 "en": {
-                    "descript_1": "Output of the program status at the variable",
-                    "descript_2": "...program.i32MotionProgramState"
+                    "descript_1": "Output of the FAPSDemonstratorAPI status at the variable",
+                    "descript_2": "...FAPSDemonstratorAPI.i32MotionProgramState"
                 }
             },
             "CMD_WRITE_PROGRAM_SET": {
@@ -1010,7 +1010,7 @@ class Command(Enum):
                     "descript_2": "-"
                 },
                 "en": {
-                    "descript_1": "Overwrite program block into handling program",
+                    "descript_1": "Overwrite FAPSDemonstratorAPI block into handling FAPSDemonstratorAPI",
                     "descript_2": "-"
                 }
             },
@@ -1020,7 +1020,7 @@ class Command(Enum):
                     "descript_2": "-"
                 },
                 "en": {
-                    "descript_1": "Read program block from handling program",
+                    "descript_1": "Read FAPSDemonstratorAPI block from handling FAPSDemonstratorAPI",
                     "descript_2": "-"
                 }
             },
@@ -1030,7 +1030,7 @@ class Command(Enum):
                     "descript_2": "-"
                 },
                 "en": {
-                    "descript_1": "Delete program block from handling program",
+                    "descript_1": "Delete FAPSDemonstratorAPI block from handling FAPSDemonstratorAPI",
                     "descript_2": "-"
                 }
             },
@@ -1040,7 +1040,7 @@ class Command(Enum):
                     "descript_2": "-"
                 },
                 "en": {
-                    "descript_1": "Insert program block into handling program",
+                    "descript_1": "Insert FAPSDemonstratorAPI block into handling FAPSDemonstratorAPI",
                     "descript_2": "-"
                 }
             },
@@ -1090,7 +1090,7 @@ class Command(Enum):
                     "descript_2": "-"
                 },
                 "en": {
-                    "descript_1": "Save handling program and segment tables on the memory card",
+                    "descript_1": "Save handling FAPSDemonstratorAPI and segment tables on the memory card",
                     "descript_2": "-"
                 }
             },
@@ -1100,7 +1100,7 @@ class Command(Enum):
                     "descript_2": "-"
                 },
                 "en": {
-                    "descript_1": "Load handling program and segment tables from the memory card",
+                    "descript_1": "Load handling FAPSDemonstratorAPI and segment tables from the memory card",
                     "descript_2": "-"
                 }
             },

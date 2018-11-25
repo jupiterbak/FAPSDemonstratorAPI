@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 import pika
-from program import command, command_mode, parameter_mode
+from FAPSDemonstratorAPI import command, command_mode, parameter_mode
 import json
 import time
 
@@ -21,7 +21,7 @@ class Program:
 
     def connect(self):
         """
-            Connect the program to the demonstrator.
+            Connect the FAPSDemonstratorAPI to the demonstrator.
         :return true if the connect has been established or false otherwise.
         """
         try:
@@ -58,7 +58,7 @@ class Program:
 
     def execute(self):
         """
-           Execute the current program. Make sure the Demonstrator is configured.
+           Execute the current FAPSDemonstratorAPI. Make sure the Demonstrator is configured.
         """
         try:
             if self.connected:
@@ -73,14 +73,14 @@ class Program:
 
     def reset(self):
         """
-            Reset the program instruction.
+            Reset the FAPSDemonstratorAPI instruction.
         """
         self.instructions = []
 
     def append_instruction(self, cmd=command.Command.CMD_NONE, cmd_mode=command_mode.CommandMode.IM, parameter1=0,
                            parameter2=0, parameter3=0, param_mode=parameter_mode.ParameterMode.ABSOLUTE, delay=0):
         """
-        Add an instruction to the program.
+        Add an instruction to the FAPSDemonstratorAPI.
         :param cmd: Instruction command.
         :param cmd_mode: Mode of the instruction command.
         :param parameter1: Command parameter 1.
@@ -104,7 +104,7 @@ class Program:
     def insert_command(self, index=0, cmd=command.Command.CMD_NONE, cmd_mode=command_mode.CommandMode.IM, parameter1=0,
                        parameter2=0, parameter3=0, param_mode=parameter_mode.ParameterMode.ABSOLUTE, delay=0):
         """
-        Insert an instruction to the program.
+        Insert an instruction to the FAPSDemonstratorAPI.
         :param index: Instruction command.
         :param cmd: Instruction command.
         :param cmd_mode: Mode of the instruction command.
@@ -136,13 +136,13 @@ class Program:
 
     def get_instructions(self):
         """
-        Return the instructions of the program as a list.
+        Return the instructions of the FAPSDemonstratorAPI as a list.
         """
         return self.instructions
 
     def get_all_instructions(self):
         """
-        Return the instructions of the program as a list. Fill unspecified instructions.
+        Return the instructions of the FAPSDemonstratorAPI as a list. Fill unspecified instructions.
         """
         while len(self.instructions) < self.PROGRAM_MAX_LENGTH:
             self.append_instruction()
@@ -150,13 +150,13 @@ class Program:
 
     def get_json(self):
         """
-        Return the instruction of the program as JSON-Array.
+        Return the instruction of the FAPSDemonstratorAPI as JSON-Array.
         """
         return json.dumps(self.instructions, ensure_ascii=False)
 
     def get_all_json(self):
         """
-        Return the instructions of the program as a list. Fill unspecified instructions.
+        Return the instructions of the FAPSDemonstratorAPI as a list. Fill unspecified instructions.
         """
         if len(self.instructions) < self.PROGRAM_MAX_LENGTH:
             return json.dumps(self.get_all_instructions(), ensure_ascii=False)

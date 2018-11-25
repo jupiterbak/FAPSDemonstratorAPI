@@ -7,7 +7,7 @@ with open('requirements.txt') as f:
 
 setup(name='DEMONSTRATOR_PROGRAM_API',
       version='0.0.1',
-      description='FAPS Demonstrator program api',
+      description='FAPS Demonstrator FAPSDemonstratorAPI api',
       license='MIT',
       author='FAU - FAPS',
       author_email='jupiter.bakakeu@faps.fau.de',
