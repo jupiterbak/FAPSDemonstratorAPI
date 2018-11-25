@@ -37,13 +37,7 @@ class Program:
                 durable=False,
                 exchange_type='fanout'
             )
-            self.channel.queue_declare(
-                queue='DEMONSTRATOR_PROGRAM_API_{}'.format(int(round(time.time() * 1000))),
-                durable=False,
-                passive=True,
-                exclusive=False,
-                auto_delete=True
-            )
+
             self.connected = True
             return True
         except Exception:

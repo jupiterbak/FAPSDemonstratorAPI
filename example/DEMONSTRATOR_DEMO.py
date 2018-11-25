@@ -25,7 +25,6 @@ if __name__ == '__main__':
         queue = channel.queue_declare(
             queue='DEMONSTRATOR_PROGRAM_API_DATA_{}'.format(int(round(time.time() * 1000))),
             durable=False,
-            passive=True,
             exclusive=False,
             auto_delete=True
         ).method.queue
@@ -56,7 +55,7 @@ if __name__ == '__main__':
                                                         50, 0, 0, FAPSDemonstratorAPI.ParameterMode.ABSOLUTE, 0)
                 demonstrator_program.execute()
 
-        channel.basic_consume(queue, mycallback, auto_ack=True)
+        channel.basic_consume( mycallback, queue=queue, no_ack=True)
         try:
             channel.start_consuming()
         except KeyboardInterrupt:
