@@ -1,4 +1,4 @@
-# DEMONSTRATOR_PROGRAM_API
+# FAPSDemonstratorAPI
 ====
 'DEMONSTRATOR_PROGRAM_API' is a RabbitMQ (AMQP-0-9-1) client library to control the faps I4.0 demonstrator by generating
  a set of instructions.
@@ -21,7 +21,7 @@ Install from pip for the latest stable release (not avialble now):
 
 ::
 
-    pip install DEMONSTRATOR_PROGRAM_API
+    pip install FAPSDemonstratorAPI
 
 Install from github for the latest changes:
 
@@ -44,8 +44,7 @@ Please make sure you are in the FAPS Network:
 
 .. code :: python
 
-    import FAPSDemonstratorAPI
-    
+    import FAPSDemonstratorAPI    
     demonstrator_program = FAPSDemonstratorAPI.Program()
     if demonstrator_program.connect():
                 demonstrator_program.reset()
@@ -88,8 +87,11 @@ Please make sure you are in the FAPS Network:
                 demonstrator_program.execute()
     else:
         print('Connection cannot be established to the Demonstrator')
-    
+  
+Credits
+=======
+Jupiter Bakakeu (jupiter.bakakeu@faps.fau.de/jupiter.bakakeu@gmail.com)
+   
 License
 =======
 Licensed under the MIT License. See COPYING for details.
-
