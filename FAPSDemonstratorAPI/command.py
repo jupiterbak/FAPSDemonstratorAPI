@@ -1,7 +1,6 @@
 from enum import Enum, unique
 
 
-@unique
 class Command(Enum):
     """This class is hold the different instruction command."""
 

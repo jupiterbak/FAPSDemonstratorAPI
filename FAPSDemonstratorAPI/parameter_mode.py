@@ -1,7 +1,6 @@
 from enum import Enum, unique
 
 
-@unique
 class ParameterMode(Enum):
     """This class is hold the different instruction command mode."""
 
