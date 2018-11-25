@@ -35,7 +35,7 @@ If you have the files checked out for development:
 
     git clone https://github.com/jupiterbak/DEMONSTRATOR_PROGRAM_API.git
     cd DEMONSTRATOR_PROGRAM_API
-    python setup.py
+    python setup.py -f
 
 Example
 -------
@@ -44,48 +44,52 @@ Please make sure you are in the FAPS Network:
 
 .. code :: python
 
-    import DEMONSTRATOR_PROGRAM_API
-    from DEMONSTRATOR_PROGRAM_API.program import program,command,parameter_mode,command_mode
+    import FAPSDemonstratorAPI
     
-    demonstrator_program = program.Program()
+    demonstrator_program = FAPSDemonstratorAPI.Program()
     if demonstrator_program.connect():
-        demonstrator_program.reset()
-        demonstrator_program.append_instruction(command.Command.CMD_SET_VELO,command_mode.CommandMode.WCD,
-                                                20,0,0,parameter_mode.ParameterMode.ABSOLUTE,0)
-        demonstrator_program.append_instruction(command.Command.CMD_POS_REL_XYZ, command_mode.CommandMode.WCD,
-                                                100, 0, 0, parameter_mode.ParameterMode.ABSOLUTE, 0)
-        demonstrator_program.append_instruction(command.Command.CMD_POS_REL_XYZ, command_mode.CommandMode.WCD,
-                                                -100, 0, 0, parameter_mode.ParameterMode.ABSOLUTE, 0)
-        demonstrator_program.append_instruction(command.Command.CMD_SET_VELO, command_mode.CommandMode.WCD,
-                                                50, 0, 0, parameter_mode.ParameterMode.ABSOLUTE, 0)
-        demonstrator_program.execute()
+                demonstrator_program.reset()
+                demonstrator_program.append_instruction(
+                    FAPSDemonstratorAPI.Command.CMD_SET_VELO,
+                    FAPSDemonstratorAPI.CommandMode.WCD,
+                    20,
+                    0,
+                    0,
+                    FAPSDemonstratorAPI.ParameterMode.ABSOLUTE,
+                    0
+                )
+                demonstrator_program.append_instruction(
+                    FAPSDemonstratorAPI.Command.CMD_POS_REL_XYZ,
+                    FAPSDemonstratorAPI.CommandMode.WCD,
+                    100,
+                    0,
+                    0,
+                    FAPSDemonstratorAPI.ParameterMode.ABSOLUTE,
+                    0
+                )
+                demonstrator_program.append_instruction(
+                    FAPSDemonstratorAPI.Command.CMD_POS_REL_XYZ,
+                    FAPSDemonstratorAPI.CommandMode.WCD,
+                    -100,
+                    0,
+                    0,
+                    FAPSDemonstratorAPI.ParameterMode.ABSOLUTE,
+                    0
+                )
+                demonstrator_program.append_instruction(
+                    FAPSDemonstratorAPI.Command.CMD_SET_VELO,
+                    FAPSDemonstratorAPI.CommandMode.WCD,
+                    50,
+                    0,
+                    0,
+                    FAPSDemonstratorAPI.ParameterMode.ABSOLUTE,
+                    0
+                )
+                demonstrator_program.execute()
     else:
-        print('Connection cannot be made to the demonstrator')
-
-And an example of writing a blocking consumer:
-
-.. code :: python
-
-    import pika
-    connection = pika.BlockingConnection()
-    channel = connection.channel()
-
-    for method_frame, properties, body in channel.consume('test'):
-
-        # Display the message parts and ack the message
-        print(method_frame, properties, body)
-        channel.basic_ack(method_frame.delivery_tag)
-
-        # Escape out of the loop after 10 messages
-        if method_frame.delivery_tag == 10:
-            break
-
-    # Cancel the consumer and return any pending messages
-    requeued_messages = channel.cancel()
-    print('Requeued %i messages' % requeued_messages)
-    connection.close()
+        print('Connection cannot be established to the Demonstrator')
     
 License
 =======
-Licensed under the BSD License. See COPYING for details.
-See jsonpickleJS/LICENSE for details about the jsonpickleJS license.
+Licensed under the MIT License. See COPYING for details.
+
