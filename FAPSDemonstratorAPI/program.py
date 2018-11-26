@@ -33,7 +33,6 @@ class Program:
             self.channel = self.connection.channel()
             self.channel.exchange_declare(
                 exchange='AMQPStreamer_Exchange_ProgramFromCloud',
-                passive=True,
                 durable=False,
                 exchange_type='fanout'
             )
@@ -58,7 +57,7 @@ class Program:
             if self.connected:
                 # Turn on delivery confirmations
                 self.channel.confirm_delivery()
-                return self.channel.basic_publish('AMQPStreamer_Exchange_ProgramFromCloud', '', self.get_all_json(),
+                return self.channel.basic_publish('AMQPStreamer_Exchange_ProgramFromCloud', '', self.get_json(),
                                                   pika.BasicProperties(delivery_mode=1))
             else:
                 return False
@@ -146,14 +145,15 @@ class Program:
         """
         Return the instruction of the FAPSDemonstratorAPI as JSON-Array.
         """
-        return json.dumps(self.instructions, ensure_ascii=False)
+        return json.dumps(self.get_instructions(), ensure_ascii=False)
 
     def get_all_json(self):
         """
         Return the instructions of the FAPSDemonstratorAPI as a list. Fill unspecified instructions.
         """
         if len(self.instructions) < self.PROGRAM_MAX_LENGTH:
-            return json.dumps(self.get_all_instructions(), ensure_ascii=False)
+            obj = json.dumps(self.get_all_instructions(), ensure_ascii=False)
+            return obj
         else:
             return self.get_json()
 

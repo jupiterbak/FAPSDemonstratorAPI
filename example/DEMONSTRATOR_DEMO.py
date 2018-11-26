@@ -3,13 +3,13 @@
 import pika
 import time
 import json
-import FAPSDemonstratorAPI
+from FAPSDemonstratorAPI import Command, CommandMode, ParameterMode, Program
 
 if __name__ == '__main__':
     print('Demonstrator Programm Api using pika version: %s' % pika.__version__)
 
     # Initialize the FAPSDemonstratorAPI
-    demonstrator_program = FAPSDemonstratorAPI.Program()
+    demonstrator_program = Program()
     if demonstrator_program.connect():
         # Initialize the listener to the Demonstrator FAPSDemonstratorAPI pointer using the FAPSDemonstratorAPI
         connection = demonstrator_program.connection
@@ -41,18 +41,18 @@ if __name__ == '__main__':
             if (not (demonstrator_is_running is None)) \
                     and (demonstrator_program_counter == demonstrator_program.PROGRAM_MAX_LENGTH-2):
                 demonstrator_program.reset()
-                demonstrator_program.append_instruction(FAPSDemonstratorAPI.Command.CMD_SET_VELO,
-                                                        FAPSDemonstratorAPI.CommandMode.WCD,
-                                                        20,0,0,FAPSDemonstratorAPI.ParameterMode.ABSOLUTE,0)
-                demonstrator_program.append_instruction(FAPSDemonstratorAPI.Command.CMD_POS_REL_XYZ,
-                                                        FAPSDemonstratorAPI.CommandMode.WCD,
-                                                        100, 0, 0, FAPSDemonstratorAPI.ParameterMode.ABSOLUTE, 0)
-                demonstrator_program.append_instruction(FAPSDemonstratorAPI.Command.CMD_POS_REL_XYZ,
-                                                        FAPSDemonstratorAPI.CommandMode.WCD,
-                                                        -100, 0, 0, FAPSDemonstratorAPI.ParameterMode.ABSOLUTE, 0)
-                demonstrator_program.append_instruction(FAPSDemonstratorAPI.Command.CMD_SET_VELO,
-                                                        FAPSDemonstratorAPI.CommandMode.WCD,
-                                                        50, 0, 0, FAPSDemonstratorAPI.ParameterMode.ABSOLUTE, 0)
+                demonstrator_program.append_instruction(Command.CMD_SET_PATH_VELO,
+                                                        CommandMode.WCD,
+                                                        20,0,0,ParameterMode.ABSOLUTE,0)
+                demonstrator_program.append_instruction(Command.CMD_POS_REL_XYZ,
+                                                        CommandMode.WCD,
+                                                        100, 0, 0, ParameterMode.ABSOLUTE, 0)
+                demonstrator_program.append_instruction(Command.CMD_POS_REL_XYZ,
+                                                        CommandMode.WCD,
+                                                        -100, 0, 0, ParameterMode.ABSOLUTE, 0)
+                demonstrator_program.append_instruction(Command.CMD_SET_PATH_VELO,
+                                                        CommandMode.WCD,
+                                                        50, 0, 0, ParameterMode.ABSOLUTE, 0)
                 demonstrator_program.execute()
 
         channel.basic_consume( mycallback, queue=queue, no_ack=True)
