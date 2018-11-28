@@ -25,7 +25,7 @@ CND_GRIPPER_OPEN = 22
 CND_CLOUD_CONNECTED = 23
 CND_START_CLOUD_PGM = 24
 
-# define basic segment points index   
+# define basic segment points index
 PT_CURRENT = 0
 PT_WAIT = 1
 PT_GRIPPER_1 = 2
@@ -207,7 +207,7 @@ if __name__ == '__main__':
         ).method.queue
         channel.queue_bind(exchange='AMQPStreamer_1', queue=queue, routing_key='')
 
-        # bind the call back to the demonstrator FAPSDemonstratorAPI and start listening                       
+        # bind the call back to the demonstrator FAPSDemonstratorAPI and start listening
         channel.basic_consume(demo.mycallback, queue=queue, no_ack=True)
         try:
             channel.start_consuming()
