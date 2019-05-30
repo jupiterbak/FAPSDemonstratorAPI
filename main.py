@@ -200,7 +200,7 @@ if __name__ == '__main__':
         )
 
         queue = channel.queue_declare(
-            queue='DEMONSTRATOR_PROGRAM_API_DATA_{}'.format(int(round(time.time() * 1000))),
+            queue='DEMONSTRATOR_PROGRAM_API_DATA',
             durable=False,
             exclusive=False,
             auto_delete=True

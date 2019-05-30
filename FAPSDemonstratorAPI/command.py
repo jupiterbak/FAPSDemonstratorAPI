@@ -574,7 +574,7 @@ class Command(Enum):
             },
             "CMD_JMP": {
                 "de": {
-                    "descript_1": "Unbedingter Sprung innerhalb des Verfahrprogrammes",
+                    "descript_1": "Bedingter Sprung innerhalb des Verfahrprogrammes",
                     "descript_2": "-"
                 },
                 "en": {

@@ -2,13 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bead8f94-0c9d-44a6-bde1-703a6fcec133" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/FAPSDemonstratorAPI/demonstrator_optimizer.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/example/advanced_example_with_optimizer.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FAPSDemonstratorAPI/main_optimizer.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/simple_example_f.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/FAPSDemonstratorAPI.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/FAPSDemonstratorAPI.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FAPSDemonstratorAPI/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/FAPSDemonstratorAPI/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/DEMONSTRATOR_DEMO.py" beforeDir="false" afterPath="$PROJECT_DIR$/example/advanced_example.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FAPSDemonstratorAPI/command.py" beforeDir="false" afterPath="$PROJECT_DIR$/FAPSDemonstratorAPI/command.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/advanced_example.py" beforeDir="false" afterPath="$PROJECT_DIR$/example/advanced_example.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -16,67 +17,13 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="FUSProjectUsageTrigger">
-    <session id="-1239270342">
-      <usages-collector id="statistics.lifecycle.project">
-        <counts>
-          <entry key="project.closed" value="1" />
-          <entry key="project.open.time.1" value="1" />
-          <entry key="project.open.time.6" value="1" />
-          <entry key="project.opened" value="2" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.extensions.open">
-        <counts>
-          <entry key="gitattributes" value="2" />
-          <entry key="gitignore" value="1" />
-          <entry key="md" value="2" />
-          <entry key="py" value="36" />
-          <entry key="txt" value="4" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.types.open">
-        <counts>
-          <entry key="Markdown" value="2" />
-          <entry key="PLAIN_TEXT" value="7" />
-          <entry key="Python" value="36" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.extensions.edit">
-        <counts>
-          <entry key="Python Console" value="9" />
-          <entry key="dummy" value="99" />
-          <entry key="gitignore" value="13" />
-          <entry key="md" value="424" />
-          <entry key="py" value="4036" />
-          <entry key="txt" value="171" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.types.edit">
-        <counts>
-          <entry key="Markdown" value="424" />
-          <entry key="PLAIN_TEXT" value="283" />
-          <entry key="Python" value="4045" />
-        </counts>
-      </usages-collector>
-    </session>
-  </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/example/simple_example.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
-              <caret line="3" selection-start-line="3" selection-end-line="3" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="196">
-              <caret line="64" column="22" lean-forward="true" selection-start-line="64" selection-start-column="22" selection-end-line="64" selection-end-column="22" />
+            <state relative-caret-position="1087">
+              <caret line="89" column="32" lean-forward="true" selection-start-line="89" selection-start-column="32" selection-end-line="89" selection-end-column="32" />
               <folding>
                 <element signature="e#19#30#0" expanded="true" />
               </folding>
@@ -87,8 +34,29 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/example/advanced_example.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3706">
-              <caret line="218" lean-forward="true" selection-start-line="218" selection-end-line="218" />
+            <state relative-caret-position="203">
+              <caret line="167" column="30" selection-start-line="167" selection-start-column="26" selection-end-line="167" selection-end-column="30" />
+              <folding>
+                <element signature="e#19#30#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/FAPSDemonstratorAPI/main_optimizer.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="203">
+              <caret line="181" column="53" selection-start-line="181" selection-start-column="49" selection-end-line="181" selection-end-column="53" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/simple_example_f.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="84">
+              <caret line="31" column="36" lean-forward="true" selection-start-line="31" selection-start-column="36" selection-end-line="31" selection-end-column="36" />
               <folding>
                 <element signature="e#19#30#0" expanded="true" />
               </folding>
@@ -99,8 +67,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/example/advanced_example_with_optimizer.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="680">
-              <caret line="106" column="25" lean-forward="true" selection-start-line="106" selection-start-column="25" selection-end-line="106" selection-end-column="25" />
+            <state relative-caret-position="373">
+              <caret line="191" column="59" lean-forward="true" selection-start-line="191" selection-start-column="59" selection-end-line="191" selection-end-column="59" />
               <folding>
                 <element signature="e#19#30#0" expanded="true" />
               </folding>
@@ -109,23 +77,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/FAPSDemonstratorAPI/demonstrator_optimizer.py">
+        <entry file="file://$PROJECT_DIR$/FAPSDemonstratorAPI/command.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="825">
-              <caret line="83" column="84" selection-start-line="83" selection-start-column="23" selection-end-line="83" selection-end-column="84" />
-              <folding>
-                <element signature="e#0#11#0" expanded="true" />
-                <marker date="1543413866833" expanded="true" signature="174:180" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/FAPSDemonstratorAPI/__init__.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="4" column="36" selection-start-line="4" selection-start-column="36" selection-end-line="4" selection-end-column="36" />
+            <state relative-caret-position="17">
+              <caret line="2" selection-start-line="2" selection-end-line="2" />
             </state>
           </provider>
         </entry>
@@ -145,6 +100,14 @@
       <find>=</find>
       <find>FAPSDemonstratorAPI</find>
       <find>DEMONSTRATOR_PROGRAM_API</find>
+      <find>CMD_JM</find>
+      <find>23</find>
+      <find>1</find>
+      <find>get_j</find>
+      <find>get</find>
+      <find>self.get_json</find>
+      <find>json</find>
+      <find>reset</find>
     </findStrings>
     <replaceStrings>
       <replace>=</replace>
@@ -169,10 +132,8 @@
         <option value="$PROJECT_DIR$/setup.py" />
         <option value="$PROJECT_DIR$/example/simple_example.py" />
         <option value="$PROJECT_DIR$/requirements.txt" />
-        <option value="$PROJECT_DIR$/FAPSDemonstratorAPI/command.py" />
         <option value="$PROJECT_DIR$/FAPSDemonstratorAPI/command_mode.py" />
         <option value="$PROJECT_DIR$/FAPSDemonstratorAPI/parameter_mode.py" />
-        <option value="$PROJECT_DIR$/FAPSDemonstratorAPI/program.py" />
         <option value="$PROJECT_DIR$/example/DEMONSTRATOR_DEMO.py" />
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/.gitignore" />
@@ -181,13 +142,17 @@
         <option value="$PROJECT_DIR$/example/advanced_example_with_optimizer.py" />
         <option value="$PROJECT_DIR$/main.py" />
         <option value="$PROJECT_DIR$/example/advanced_example.py" />
+        <option value="$PROJECT_DIR$/FAPSDemonstratorAPI/command.py" />
+        <option value="$PROJECT_DIR$/FAPSDemonstratorAPI/program.py" />
+        <option value="$PROJECT_DIR$/simple_example_f.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="y" value="611" />
-    <option name="width" value="1920" />
-    <option name="height" value="429" />
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1696" />
+    <option name="height" value="1026" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -206,6 +171,11 @@
               <item name="DEMONSTRATOR_PROGRAM_API" type="462c0819:PsiDirectoryNode" />
               <item name="example" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="FAPSDemonstratorAPI" type="b2602c69:ProjectViewProjectNode" />
+              <item name="DEMONSTRATOR_PROGRAM_API" type="462c0819:PsiDirectoryNode" />
+              <item name="FAPSDemonstratorAPI" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -218,15 +188,17 @@
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\GIT_REPO\DEMONSTRATOR_PROGRAM_API\example" />
-      <recent name="D:\GIT_REPO\DEMONSTRATOR_PROGRAM_API" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\GIT_REPO\DEMONSTRATOR_PROGRAM_API\FAPSDemonstratorAPI" />
       <recent name="D:\GIT_REPO\DEMONSTRATOR_PROGRAM_API\example" />
       <recent name="D:\GIT_REPO\DEMONSTRATOR_PROGRAM_API" />
       <recent name="D:\GIT_REPO\DEMONSTRATOR_PROGRAM_API\program" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="F:\DEMONSTRATOR\GitHub\DEMONSTRATOR_PROGRAM_API" />
+      <recent name="F:\DEMONSTRATOR\GitHub\DEMONSTRATOR_PROGRAM_API\FAPSDemonstratorAPI" />
+      <recent name="D:\GIT_REPO\DEMONSTRATOR_PROGRAM_API\example" />
+      <recent name="D:\GIT_REPO\DEMONSTRATOR_PROGRAM_API" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -241,29 +213,8 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.DEMONSTRATOR_DEMO">
-    <configuration name="DEMONSTRATOR_DEMO" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="FAPSDemonstratorAPI" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/example" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="D:\GIT_REPO\DEMONSTRATOR_PROGRAM_API\example\advanced_example.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="setup" type="PythonConfigurationType" factoryName="Python" temporary="true">
+  <component name="RunManager" selected="Python.simple_example_f">
+    <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="FAPSDemonstratorAPI" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -275,7 +226,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/setup.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -284,7 +235,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="simple_example" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="main_optimizer" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="FAPSDemonstratorAPI" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -292,11 +243,11 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/example" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/FAPSDemonstratorAPI" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/example/simple_example.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/FAPSDemonstratorAPI/main_optimizer.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -305,16 +256,32 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <list>
-      <item itemvalue="Python.setup" />
-      <item itemvalue="Python.simple_example" />
-      <item itemvalue="Python.DEMONSTRATOR_DEMO" />
-    </list>
+    <configuration name="simple_example_f" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="FAPSDemonstratorAPI" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/simple_example_f.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.DEMONSTRATOR_DEMO" />
-        <item itemvalue="Python.simple_example" />
-        <item itemvalue="Python.setup" />
+        <item itemvalue="Python.simple_example_f" />
+        <item itemvalue="Python.main" />
+        <item itemvalue="Python.main_optimizer" />
       </list>
     </recent_temporary>
   </component>
@@ -438,30 +405,27 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1176" extended-state="6" />
+    <frame x="1912" y="-8" width="1616" height="1216" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24762908" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.21989861" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32885906" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.32936078" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.21863468" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3997833" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info anchor="bottom" id="Terminal" order="8" weight="0.10400867" />
+      <window_info anchor="bottom" id="Terminal" order="8" weight="0.14852399" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
       <window_info anchor="bottom" id="Python Console" order="10" weight="0.32936078" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
     </layout>
-  </component>
-  <component name="VcsContentAnnotationSettings">
-    <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Initial Implementation" />
@@ -501,23 +465,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/FAPSDemonstratorAPI/command.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" selection-start-line="2" selection-end-line="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/FAPSDemonstratorAPI/program.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="595">
-          <caret line="38" selection-start-line="38" selection-end-line="38" />
-          <folding>
-            <element signature="e#22#33#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
@@ -531,13 +478,7 @@
     <entry file="file://$PROJECT_DIR$/.gitattributes">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://C:/ProgramData/Anaconda3/Lib/site-packages/pika/channel.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="8619">
-          <caret line="515" selection-start-line="515" selection-end-line="515" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://C:/ProgramData/Anaconda3/Lib/site-packages/pika/channel.py" />
     <entry file="file://$PROJECT_DIR$/FAPSDemonstratorAPI/command_mode.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
@@ -573,21 +514,34 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$USER_HOME$/Anaconda3/Lib/site-packages/numpy/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="141" selection-start-line="141" selection-end-line="141" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/FAPSDemonstratorAPI/demonstrator_optimizer.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="825">
-          <caret line="83" column="84" selection-start-line="83" selection-start-column="23" selection-end-line="83" selection-end-column="84" />
+        <state relative-caret-position="119">
+          <caret line="7" column="22" lean-forward="true" selection-start-line="7" selection-start-column="22" selection-end-line="7" selection-end-column="22" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
-            <marker date="1543413866833" expanded="true" signature="174:180" ph="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FAPSDemonstratorAPI/main_optimizer.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="203">
+          <caret line="181" column="53" selection-start-line="181" selection-start-column="49" selection-end-line="181" selection-end-column="53" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/example/advanced_example.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3706">
-          <caret line="218" lean-forward="true" selection-start-line="218" selection-end-line="218" />
+        <state relative-caret-position="203">
+          <caret line="167" column="30" selection-start-line="167" selection-start-column="26" selection-end-line="167" selection-end-column="30" />
           <folding>
             <element signature="e#19#30#0" expanded="true" />
           </folding>
@@ -596,18 +550,45 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/example/advanced_example_with_optimizer.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="680">
-          <caret line="106" column="25" lean-forward="true" selection-start-line="106" selection-start-column="25" selection-end-line="106" selection-end-column="25" />
+        <state relative-caret-position="373">
+          <caret line="191" column="59" lean-forward="true" selection-start-line="191" selection-start-column="59" selection-end-line="191" selection-end-column="59" />
           <folding>
             <element signature="e#19#30#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/FAPSDemonstratorAPI/command.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="2" selection-start-line="2" selection-end-line="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/simple_example_f.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="84">
+          <caret line="31" column="36" lean-forward="true" selection-start-line="31" selection-start-column="36" selection-end-line="31" selection-end-column="36" />
+          <folding>
+            <element signature="e#19#30#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FAPSDemonstratorAPI/program.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="68" column="54" lean-forward="true" selection-start-line="68" selection-start-column="54" selection-end-line="68" selection-end-column="54" />
+          <folding>
+            <element signature="e#22#33#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="196">
-          <caret line="64" column="22" lean-forward="true" selection-start-line="64" selection-start-column="22" selection-end-line="64" selection-end-column="22" />
+        <state relative-caret-position="1087">
+          <caret line="89" column="32" lean-forward="true" selection-start-line="89" selection-start-column="32" selection-end-line="89" selection-end-column="32" />
           <folding>
             <element signature="e#19#30#0" expanded="true" />
           </folding>
