@@ -21,7 +21,7 @@ if __name__ == '__main__':
                 demonstrator_program.append_instruction(
                     Command.CMD_POS_REL_XYZ,
                     CommandMode.WCD,
-                    100,
+                    10,
                     0,
                     0,
                     ParameterMode.ABSOLUTE,
@@ -30,7 +30,7 @@ if __name__ == '__main__':
                 demonstrator_program.append_instruction(
                     Command.CMD_POS_REL_XYZ,
                     CommandMode.WCD,
-                    -100,
+                    -10,
                     0,
                     0,
                     ParameterMode.ABSOLUTE,

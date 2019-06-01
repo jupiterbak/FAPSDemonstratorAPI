@@ -5,6 +5,7 @@ import json
 import time
 
 
+
 class Program:
     """This class is the class holdinfg the set of instruction that will be executed to the demonstrator."""
 
@@ -12,7 +13,69 @@ class Program:
         """
             Responsible for generating the set of instructions.
         """
+
+        # Define global constants
+        # Define Global Conditions
+        self.CND_INIT = 1
+        self.CND_FINISH = 2
+        self.CND_BASIC_SEG_PRE_STOP = 3
+        self.CND_NEW_PRODUCT = 4
+        self.CND_PRODUCT_DONE = 5
+        self.CND_GRIPPER_RDY_1 = 6
+        self.CND_GRIPPER_RDY_2 = 7
+        self.CND_GRIPPER_RDY_3 = 8
+        self.CND_PRODUCT_ACTION = 9
+        self.CND_PROGRAM_DONE = 17
+
+        self.CND_CAMERA_TAKE_PIC = 20
+        self.CND_GRIPPER_ON = 21
+        self.CND_GRIPPER_OPEN = 22
+        self.CND_CLOUD_CONNECTED = 23
+        self.CND_START_CLOUD_PGM = 24
+
+        # define basic segment points index
+        self.PT_CURRENT = 0
+        self.PT_WAIT = 1
+        self.PT_GRIPPER_1 = 2
+        self.PT_GRIPPER_1_VO_IN = 3
+        self.PT_GRIPPER_1_VO_OUT = 4
+        self.PT_GRIPPER_2 = 5
+        self.PT_GRIPPER_2_VO_IN = 6
+        self.PT_GRIPPER_2_VO_OUT = 7
+        self.PT_GRIPPER_3 = 8
+        self.PT_GRIPPER_3_VO_IN = 9
+        self.PT_GRIPPER_3_VO_OUT = 10
+        self.PT_GRIPPER_4 = 11
+        self.PT_GRIPPER_4_VO_IN = 12
+        self.PT_GRIPPER_4_VO_OUT = 13
+        self.PT_PRODUCT_1 = 14
+        self.PT_PRODUCT_2 = 15
+        self.PT_PRODUCT_3 = 16
+        self.PT_PRODUCT_4 = 17
+        self.PT_GRIPPER_REF = 18
+        self.PT_PRODUCT_REF = 19
+        self.PT_PRODUCT_CAMERA = 20
+
+        self.PT_PALLETE_0_START = 32
+        self.PT_PALLETE_0_CNT_X = 4
+        self.PT_PALLETE_0_CNT_Y = 4
+
+        self.PT_PALLETE_1_START = 48
+        self.PT_PALLETE_1_CNT_X = 4
+        self.PT_PALLETE_1_CNT_Y = 4
+
+        # Define program indexes
+        self.INDEX_START = 1
+        self.INDEX_MOVE_WAIT = 30
+        self.INDEX_MONTAGE = 100
+        self.INDEX_DEMONTAGE = 250
+        self.INDEX_ACTION_DONE = 400
+        self.INDEX_CLOUD_CMDS = 450
+        self.CLOUD_CMD_LENGTH = 500
+
         self.PROGRAM_MAX_LENGTH = 500
+        self.INDEX_CLOUD_CMDS = 450
+        self.RETURN_INDEX = self.INDEX_CLOUD_CMDS -2
         self.DEMONSTRATOR_ENDPOINT = "cloud.faps.uni-erlangen.de"
         self.instructions = []
         self.connection = None
@@ -53,8 +116,21 @@ class Program:
         """
            Execute the current FAPSDemonstratorAPI. Make sure the Demonstrator is configured.
         """
+        if len(self.instructions) > self.PROGRAM_MAX_LENGTH - 1:
+            print("Warning: Program length %s is bigger than the maximum program lenth %s",self.instructions, self.PROGRAM_MAX_LENGTH - 1)
+            return False
         try:
             if self.connected:
+                # Add a return instruction to ensure a safe return
+                self.append_instruction(
+                    command.Command.CMD_JUMP_TO_SETNUMBER,
+                    command_mode.CommandMode.WCD,
+                    self.RETURN_INDEX,  # position
+                    0,  # -
+                    0,  # -
+                    parameter_mode.ParameterMode.ABSOLUTE,
+                    0
+                )
                 # Turn on delivery confirmations
                 self.channel.confirm_delivery()
                 return self.channel.basic_publish('AMQPStreamer_Exchange_ProgramFromCloud', '', self.get_json(),
