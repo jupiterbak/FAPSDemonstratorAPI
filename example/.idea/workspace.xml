@@ -2,14 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bdd1e5f5-107b-46f4-ac2e-ff6b347a8dc7" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../FAPSDemonstratorAPI/main_optimizer.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../simple_example_f.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/FAPSDemonstratorAPI.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/FAPSDemonstratorAPI.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FAPSDemonstratorAPI/command.py" beforeDir="false" afterPath="$PROJECT_DIR$/../FAPSDemonstratorAPI/command.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/advanced_example.py" beforeDir="false" afterPath="$PROJECT_DIR$/advanced_example.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../main.py" beforeDir="false" afterPath="$PROJECT_DIR$/../main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pick_and_Place_Scenario_01.py" beforeDir="false" afterPath="$PROJECT_DIR$/Pick_and_Place_Scenario_01.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -18,17 +13,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/simple_example.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="527">
-              <caret line="39" column="46" selection-start-line="39" selection-start-column="46" selection-end-line="39" selection-end-column="46" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -60,7 +45,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/.." />
+    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/Kerstin" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -110,10 +95,21 @@
     </layout>
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/advanced_example.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-153" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Pick_and_Place_Scenario_01.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/simple_example.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="527">
-          <caret line="39" column="46" selection-start-line="39" selection-start-column="46" selection-end-line="39" selection-end-column="46" />
+        <state relative-caret-position="305">
+          <caret line="23" column="23" lean-forward="true" selection-start-line="23" selection-start-column="20" selection-end-line="23" selection-end-column="23" />
+          <folding>
+            <element signature="e#19#30#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

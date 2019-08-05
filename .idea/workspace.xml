@@ -1,15 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="bead8f94-0c9d-44a6-bde1-703a6fcec133" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/example/Pick_and_Place_Scenario_01.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/FAPSDemonstratorAPI.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/FAPSDemonstratorAPI.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FAPSDemonstratorAPI/program.py" beforeDir="false" afterPath="$PROJECT_DIR$/FAPSDemonstratorAPI/program.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/simple_example.py" beforeDir="false" afterPath="$PROJECT_DIR$/example/simple_example.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/simple_example_f.py" beforeDir="false" />
-    </list>
+    <list default="true" id="bead8f94-0c9d-44a6-bde1-703a6fcec133" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,7 +26,7 @@
         <entry file="file://$PROJECT_DIR$/example/Pick_and_Place_Scenario_01.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="413">
-              <caret line="262" column="59" lean-forward="true" selection-start-line="262" selection-start-column="59" selection-end-line="262" selection-end-column="59" />
+              <caret line="262" column="59" selection-start-line="262" selection-start-column="59" selection-end-line="262" selection-end-column="59" />
               <folding>
                 <element signature="e#19#30#0" expanded="true" />
                 <element signature="e#1723#7406#0" />
@@ -157,7 +149,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -179,6 +170,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -610,7 +602,7 @@
     <entry file="file://$PROJECT_DIR$/example/Pick_and_Place_Scenario_01.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="413">
-          <caret line="262" column="59" lean-forward="true" selection-start-line="262" selection-start-column="59" selection-end-line="262" selection-end-column="59" />
+          <caret line="262" column="59" selection-start-line="262" selection-start-column="59" selection-end-line="262" selection-end-column="59" />
           <folding>
             <element signature="e#19#30#0" expanded="true" />
             <element signature="e#1723#7406#0" />
