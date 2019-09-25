@@ -133,7 +133,7 @@ class Program:
                 )
                 # Turn on delivery confirmations
                 self.channel.confirm_delivery()
-                return self.channel.basic_publish('AMQPStreamer_Exchange_ProgramFromCloud', '', self.get_json(),
+                return self.channel.basic_publish('FAPS_DEMONSTRATOR_ProgramManagement_ProgramFromCloud', '', self.get_json(),
                                                   pika.BasicProperties(delivery_mode=1))
             else:
                 return False
