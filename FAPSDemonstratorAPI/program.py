@@ -170,6 +170,16 @@ class Program:
             }
         )
 
+    def append_all_instructions(self, instruction_list):
+        """
+        Insert a list of instructions to the FAPSDemonstratorAPI.
+        Note: We are not testing if the instructions are valid.
+        :param index: Instruction command.
+        """
+        for instruction in instruction_list:
+            self.instructions.append(instruction)
+
+
     def insert_command(self, index=0, cmd=command.Command.CMD_NONE, cmd_mode=command_mode.CommandMode.IM, parameter1=0,
                        parameter2=0, parameter3=0, param_mode=parameter_mode.ParameterMode.ABSOLUTE, delay=0):
         """

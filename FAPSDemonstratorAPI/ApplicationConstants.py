@@ -57,3 +57,17 @@ INDEX_ACTION_DONE = 400
 INDEX_CLOUD_CMDS = 450
 CLOUD_CMD_LENGTH = 500
 
+# define Magazin
+# TODO: Change it with real values
+MAGAZIN_POSITION_CAMERA = \
+    [
+        [0, 0, 0],
+        [0, 0, 0],
+        [0, 0, 0],
+        [0, 0, 0],
+        [0, 0, 0],
+        [0, 0, 0]
+    ]
+
+
+
