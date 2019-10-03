@@ -28,6 +28,7 @@ def set_velocity(target_velocity=None, execute=False):
 
     return cmd_list
 
+
 def goto_position(x=None, y=None, z=None, positioning_mode=None, execute=False):
     # Check the parameter
     if (x is None) or (y is None) or (z is None):
@@ -48,12 +49,12 @@ def goto_position(x=None, y=None, z=None, positioning_mode=None, execute=False):
     )
 
     # Wait until movement is finished
-    temp.append_instruction(
-        Command.CMD_WAIT_FOR_PATH_POSITION,
-        CommandMode.WCD,
-        5.0, -1, 0,
-        ParameterMode.ABSOLUTE,
-        0)
+    # temp.append_instruction(
+    #     Command.CMD_WAIT_FOR_PATH_POSITION,
+    #     CommandMode.WCD,
+    #     5.0, -1, 0,
+    #     ParameterMode.ABSOLUTE,
+    #     0)
 
     cmd_list = temp.get_instructions()
     if execute is True:
@@ -73,7 +74,7 @@ def goto_product_camera_position(execute=False):
     temp.append_instruction(
         Command.CMD_SET_PATH_VELO,
         CommandMode.WCD,
-        20,
+        30,
         0,
         0,
         ParameterMode.ABSOLUTE,
@@ -149,7 +150,7 @@ def goto_magazin_camera_position(magazin_index=None, execute=False):
         return []
         # get the position
     m_position = MAGAZIN_POSITION_CAMERA[magazin_index]
-    if m_position is None or len(m_position) <= 3:
+    if m_position is None or len(m_position) < 3:
         return []
 
     temp = Program()
@@ -159,7 +160,7 @@ def goto_magazin_camera_position(magazin_index=None, execute=False):
     temp.append_instruction(
         Command.CMD_SET_PATH_VELO,
         CommandMode.WCD,
-        20,
+        30,
         0,
         0,
         ParameterMode.ABSOLUTE,
@@ -177,13 +178,13 @@ def goto_magazin_camera_position(magazin_index=None, execute=False):
     )
 
     # Wait until movement is finished
-    temp.append_instruction(
-        Command.CMD_WAIT_FOR_PATH_POSITION,
-        CommandMode.WCD,
-        1.0, -1, 0,
-        ParameterMode.ABSOLUTE,
-        0
-    )
+    # temp.append_instruction(
+    #     Command.CMD_WAIT_FOR_PATH_POSITION,
+    #     CommandMode.WCD,
+    #     5.0, -1, 0,
+    #     ParameterMode.ABSOLUTE,
+    #     0
+    # )
 
     cmd_list = temp.get_instructions()
     if execute is True:
@@ -198,7 +199,7 @@ def goto_magazin_and_take_picture(magazin_index=None, execute=False):
         return []
         # get the position
     m_position = MAGAZIN_POSITION_CAMERA[magazin_index]
-    if m_position is None or len(m_position) <= 3:
+    if m_position is None or len(m_position) < 3:
         return []
 
     # Initialize the programm
@@ -225,7 +226,7 @@ def scan_magazin(magazin_index=None, execute=False):
         return []
         # get the position
     m_position = MAGAZIN_POSITION_CAMERA[magazin_index]
-    if m_position is None or len(m_position) <= 3:
+    if m_position is None or len(m_position) < 3:
         return []
 
     # Initialize the programm
@@ -238,27 +239,18 @@ def scan_magazin(magazin_index=None, execute=False):
     temp.append_all_instructions(goto_magazin_camera_position(magazin_index, execute=False))
 
     # Start scanning
-    temp.append_all_instructions(goto_position(10.0, 10.0, 0.0, positioning_mode="Relative", execute=False))
+    # Move -50 mm  in the x direction
+    temp.append_all_instructions(goto_position(-50.0, 0.0, 0.0, positioning_mode="Relative", execute=False))
     # Take a first picture
     temp.append_all_instructions(take_picture(execute=False))
 
-    # Move -20 mm  in the x direction
-    temp.append_all_instructions(goto_position(-20.0, 0.0, 0.0, positioning_mode="Relative", execute=False))
+    # Move 100 mm  in the x direction
+    temp.append_all_instructions(goto_position(100.0, 0.0, 0.0, positioning_mode="Relative", execute=False))
     # Take a second picture
     temp.append_all_instructions(take_picture(execute=False))
 
-    # Move 20 mm forward in the y direction
-    temp.append_all_instructions(goto_position(0.0, -20.0, 0.0, positioning_mode="Relative", execute=False))
-    # Take a third picture
-    temp.append_all_instructions(take_picture(execute=False))
-
-    # Move -20 mm forward in the x direction
-    temp.append_all_instructions(goto_position(20.0, 0.0, 0.0, positioning_mode="Relative", execute=False))
-    # Take a fourth picture
-    temp.append_all_instructions(take_picture(execute=False))
-
-    # Move -10 mm  in the x direction and 10 mm in the y direction
-    temp.append_all_instructions(goto_position(-10.0, 10.0, 0.0, positioning_mode="Relative", execute=False))
+    # Move -50 mm  in the x direction and 10 mm in the y direction
+    temp.append_all_instructions(goto_position(-50.0, 0.0, 0.0, positioning_mode="Relative", execute=False))
 
     cmd_list = temp.get_instructions()
     # Execute the program
@@ -301,32 +293,80 @@ def scan_product(execute=False):
     temp.append_all_instructions(goto_product_camera_position(execute=False))
 
     # Start scanning
-    temp.append_all_instructions(goto_position(10.0, 10.0, 0.0, positioning_mode="Relative", execute=False))
+    temp.append_all_instructions(goto_position(40.0, 50.0, 0.0, positioning_mode="Relative", execute=False))
     # Take a first picture
     temp.append_all_instructions(take_picture(execute=False))
 
     # Move -20 mm  in the x direction
-    temp.append_all_instructions(goto_position(-20.0, 0.0, 0.0, positioning_mode="Relative", execute=False))
+    temp.append_all_instructions(goto_position(-80.0, 0.0, 0.0, positioning_mode="Relative", execute=False))
     # Take a second picture
     temp.append_all_instructions(take_picture(execute=False))
 
     # Move -20 mm forward in the y direction
-    temp.append_all_instructions(goto_position(0.0, -20.0, 0.0, positioning_mode="Relative", execute=False))
+    temp.append_all_instructions(goto_position(0.0, -50.0, 0.0, positioning_mode="Relative", execute=False))
     # Take a third picture
     temp.append_all_instructions(take_picture(execute=False))
 
     # Move 20 mm forward in the x direction
-    temp.append_all_instructions(goto_position(20.0, 0.0, 0.0, positioning_mode="Relative", execute=False))
+    temp.append_all_instructions(goto_position(80.0, 0.0, 0.0, positioning_mode="Relative", execute=False))
     # Take a fourth picture
     temp.append_all_instructions(take_picture(execute=False))
 
     # Move -10 mm  in the x direction and 10 mm in the y direction
-    temp.append_all_instructions(goto_position(-10.0, 10.0, 0.0, positioning_mode="Relative", execute=False))
+    temp.append_all_instructions(goto_position(-40.0, 0.0, 0.0, positioning_mode="Relative", execute=False))
 
     cmd_list = temp.get_instructions()
     # Execute the program
     if execute is True:
         temp.execute()
+    return cmd_list
+
+
+def calibrate_magazin(magazin_index=None, execute=False):
+    # Check the parameter
+    if magazin_index is None:
+        return []
+        # get the position
+    m_position = MAGAZIN_POSITION_CAMERA[magazin_index]
+    if m_position is None or len(m_position) < 3:
+        return []
+
+    # Initialize the programm
+    temp = Program()
+    if execute is True:
+        temp.reset()
+
+    # Append all instructions
+    # Go to the target position
+    temp.append_all_instructions(goto_magazin_camera_position(magazin_index, execute=False))
+
+    # Take a picture
+    temp.append_all_instructions(take_picture(execute=False))
+
+    cmd_list = temp.get_instructions()
+    # Execute the program
+    if execute is True:
+        temp.execute()
+
+    return cmd_list
+
+
+def calibrate_all_magazins(execute=False):
+    # Check the parameter
+    # Nothing to do
+    # Initialize the programm
+    temp = Program()
+    if execute is True:
+        temp.reset()
+
+    for i in range(len(MAGAZIN_POSITION_CAMERA)):
+        temp.append_all_instructions(calibrate_magazin(i, execute=False))
+
+    cmd_list = temp.get_instructions()
+    # Execute the program
+    if execute is True:
+        temp.execute()
+
     return cmd_list
 
 
