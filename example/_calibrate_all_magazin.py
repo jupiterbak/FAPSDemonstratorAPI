@@ -80,9 +80,8 @@ def periodic_main():
     data = {
         "time": datetime.now().timestamp(),
         "start": True,
-        "object": "MAGAZIN_%s" % MAGAZIN_INDEX
+        "object": "MAGAZIN_ALL"
     }
-
     channel.basic_publish(exchange="FAPS_DEMONSTRATOR_ImageProcessing_CalibrationSignals",
                                routing_key='',
                                body=json.dumps(data))
@@ -91,11 +90,11 @@ def periodic_main():
     demonstrator_program = Program()
     if demonstrator_program.connect(): ## Demonstrator is connected
         demonstrator_program.reset()
-        demonstrator_program.append_all_instructions(utils.calibrate_magazin(magazin_index=MAGAZIN_INDEX))
+        for i in range(len(MAGAZIN_POSITION_CAMERA)):
+            demonstrator_program.append_all_instructions(utils.calibrate_magazin(magazin_index=i))
 
         ## Execute
         demonstrator_program.execute()
-        threading.Timer(30, periodic_main).start()
     else:
         print('Connection cannot be established to the Demonstrator')
 

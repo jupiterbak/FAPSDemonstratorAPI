@@ -1,3 +1,5 @@
+import random
+
 from FAPSDemonstratorAPI import Program, Command, CommandMode, ParameterMode
 from FAPSDemonstratorAPI.ApplicationConstants import *
 
@@ -361,6 +363,51 @@ def calibrate_all_magazins(execute=False):
 
     for i in range(len(MAGAZIN_POSITION_CAMERA)):
         temp.append_all_instructions(calibrate_magazin(i, execute=False))
+
+    cmd_list = temp.get_instructions()
+    # Execute the program
+    if execute is True:
+        temp.execute()
+
+    return cmd_list
+
+def calibrate_camera( execute=False):
+    # Check the parameter
+    # We will consider only the 4th magazin position
+    m_position = MAGAZIN_POSITION_CAMERA[4]
+    if m_position is None or len(m_position) < 3:
+        return []
+
+    # Initialize the programm
+    temp = Program()
+    if execute is True:
+        temp.reset()
+
+    # Append all instructions
+    # set the velocity to 20%
+    temp.append_instruction(
+        Command.CMD_SET_PATH_VELO,
+        CommandMode.WCD,
+        30,
+        0,
+        0,
+        ParameterMode.ABSOLUTE,
+        0
+    )
+    # Goto the random position and take 10 pictures
+    for i in range(10):
+        # Go to the position
+        temp.append_instruction(
+            Command.CMD_POS_ABS_XYZ,
+            CommandMode.WCD,
+            m_position[0] + random.randint(-30, 30),
+            m_position[1] + random.randint(-30, 30),
+            m_position[2],
+            ParameterMode.ABSOLUTE,
+            0
+        )
+        # Take a picture
+        temp.append_all_instructions(take_picture(execute=False))
 
     cmd_list = temp.get_instructions()
     # Execute the program
