@@ -58,7 +58,6 @@ INDEX_CLOUD_CMDS = 450
 CLOUD_CMD_LENGTH = 500
 
 # define Magazin
-# TODO: Change it with real values
 MAGAZIN_POSITION_CAMERA = \
     [
         [610, 270, 150],
@@ -68,5 +67,6 @@ MAGAZIN_POSITION_CAMERA = \
         [2360, 250, 150]
     ]
 
-
+# Define product position camera
+PRODUCT_POSITION_CAMERA = [1442, -94, 170]
 

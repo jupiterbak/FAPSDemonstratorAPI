@@ -417,6 +417,40 @@ def calibrate_camera( execute=False):
     return cmd_list
 
 
+def calibrate_product(execute=False):
+    # Check the parameter
+    m_position = PRODUCT_POSITION_CAMERA
+    if m_position is None or len(m_position) < 3:
+        return []
+
+    # Initialize the programm
+    temp = Program()
+    if execute is True:
+        temp.reset()
+
+    # Append all instructions
+    # Go to the target position
+    temp.append_instruction(
+        Command.CMD_POS_ABS_XYZ,
+        CommandMode.WCD,
+        m_position[0],
+        m_position[1],
+        m_position[2],
+        ParameterMode.ABSOLUTE,
+        0
+    )
+
+    # Take a picture
+    temp.append_all_instructions(take_picture(execute=False))
+
+    cmd_list = temp.get_instructions()
+    # Execute the program
+    if execute is True:
+        temp.execute()
+
+    return cmd_list
+
+
 def take_gripper(gripper_index=None, execute=False):
     # Not implemented
     return []

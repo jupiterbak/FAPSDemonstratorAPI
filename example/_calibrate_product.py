@@ -10,9 +10,6 @@ from FAPSDemonstratorAPI.ApplicationConstants import *
 from random import shuffle
 import logging
 
-MAGAZIN_INDEX = 0
-
-
 levels = (logging.DEBUG, logging.INFO, logging.WARNING, logging.ERROR, logging.CRITICAL)
 logging.basicConfig(format='%(asctime)-15s [%(levelname)] [%(name)-12s] %(message)s', datefmt='%d-%b-%y %H:%M:%S')
 logger = logging.getLogger('FAPS Image Stiching Service')
@@ -80,7 +77,7 @@ def periodic_main():
     data = {
         "time": datetime.now().timestamp(),
         "start": True,
-        "object": "MAGAZIN_%s" % MAGAZIN_INDEX
+        "object": "PRODUCT"
     }
 
     channel.basic_publish(exchange="FAPS_DEMONSTRATOR_ImageProcessing_CalibrationSignals",
@@ -91,7 +88,7 @@ def periodic_main():
     demonstrator_program = Program()
     if demonstrator_program.connect(): ## Demonstrator is connected
         demonstrator_program.reset()
-        demonstrator_program.append_all_instructions(utils.calibrate_magazin(magazin_index=MAGAZIN_INDEX))
+        demonstrator_program.append_all_instructions(utils.calibrate_product())
 
         ## Execute
         demonstrator_program.execute()

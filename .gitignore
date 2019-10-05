@@ -3,5 +3,4 @@ dist/
 __pycache__/
 FAPSDemonstratorAPI.egg-info
 .vscode
-.idea
 venv

@@ -1,24 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="bead8f94-0c9d-44a6-bde1-703a6fcec133" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/example/_calibrate_magazin.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/example/_scan_all_magazin.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/example/_scan_magazin.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/example/_scan_product.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/example/just_picture_example.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/FAPSDemonstratorAPI.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/FAPSDemonstratorAPI.iml" afterDir="false" />
+    <list default="true" id="8f3b58fc-4f84-4a6b-8c22-f36b34300dec" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/example/_calibrate_product.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/FAPSDemonstratorAPI.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FAPSDemonstratorAPI/ApplicationConstants.py" beforeDir="false" afterPath="$PROJECT_DIR$/FAPSDemonstratorAPI/ApplicationConstants.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FAPSDemonstratorAPI/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/FAPSDemonstratorAPI/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FAPSDemonstratorAPI/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/FAPSDemonstratorAPI/utils.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/.idea/encodings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/.idea/example.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/_calibrate_magazin.py" beforeDir="false" afterPath="$PROJECT_DIR$/example/_calibrate_magazin.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -26,36 +20,16 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Python Script" />
-      </list>
-    </option>
-  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectId" id="1RLQEnvICHGpXmLDVmtxrBmBgfV" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectId" id="1RkBj16BXVKDaeVAid0ePN8AAyd" />
   <component name="PropertiesComponent">
     <property name="last_opened_file_path" value="$PROJECT_DIR$/example" />
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\WORKSPACE_JBK\GITHUB\DEMONSTRATOR_PROGRAM_API\example" />
-      <recent name="F:\DEMONSTRATOR\GitHub\DEMONSTRATOR_PROGRAM_API" />
-      <recent name="F:\DEMONSTRATOR\GitHub\DEMONSTRATOR_PROGRAM_API\FAPSDemonstratorAPI" />
-      <recent name="D:\GIT_REPO\DEMONSTRATOR_PROGRAM_API\example" />
-      <recent name="D:\GIT_REPO\DEMONSTRATOR_PROGRAM_API" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="E:\WORKSPACE_JBK\GITHUB\DEMONSTRATOR_PROGRAM_API\example" />
-      <recent name="F:\DEMONSTRATOR\GitHub\DEMONSTRATOR_PROGRAM_API\example" />
-      <recent name="D:\GIT_REPO\DEMONSTRATOR_PROGRAM_API\FAPSDemonstratorAPI" />
-      <recent name="D:\GIT_REPO\DEMONSTRATOR_PROGRAM_API\example" />
-      <recent name="D:\GIT_REPO\DEMONSTRATOR_PROGRAM_API" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -70,9 +44,30 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python._calibrate_magazin">
+  <component name="RunManager" selected="Python._calibrate_product">
+    <configuration name="_calibrate_camera" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="DEMONSTRATOR_PROGRAM_API" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/example" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/example/_calibrate_camera.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="_calibrate_magazin" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="FAPSDemonstratorAPI" />
+      <module name="DEMONSTRATOR_PROGRAM_API" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -92,8 +87,8 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="_scan_all_magazin" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="FAPSDemonstratorAPI" />
+    <configuration name="_calibrate_product" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="DEMONSTRATOR_PROGRAM_API" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -104,70 +99,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/example/_scan_all_magazin.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="_scan_magazin" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="FAPSDemonstratorAPI" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/example" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/example/_scan_magazin.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="_scan_product" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="FAPSDemonstratorAPI" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/example" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/example/_scan_product.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="just_picture_example" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="FAPSDemonstratorAPI" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/example" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/example/just_picture_example.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/example/_calibrate_product.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -178,11 +110,9 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python._calibrate_product" />
         <item itemvalue="Python._calibrate_magazin" />
-        <item itemvalue="Python._scan_all_magazin" />
-        <item itemvalue="Python._scan_magazin" />
-        <item itemvalue="Python._scan_product" />
-        <item itemvalue="Python.just_picture_example" />
+        <item itemvalue="Python._calibrate_camera" />
       </list>
     </recent_temporary>
   </component>
@@ -191,125 +121,12 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="bead8f94-0c9d-44a6-bde1-703a6fcec133" name="Default Changelist" comment="" />
-      <created>1543151115719</created>
+      <changelist id="8f3b58fc-4f84-4a6b-8c22-f36b34300dec" name="Default Changelist" comment="" />
+      <created>1570201344430</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1543151115719</updated>
+      <updated>1570201344430</updated>
     </task>
-    <task id="LOCAL-00001" summary="Initial Implementation">
-      <created>1543171027862</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1543171027862</updated>
-    </task>
-    <task id="LOCAL-00002" summary="Initial Implementation">
-      <created>1543171115343</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1543171115343</updated>
-    </task>
-    <task id="LOCAL-00003" summary="Rename to FAPS Demonstrator API">
-      <created>1543172755767</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1543172755767</updated>
-    </task>
-    <task id="LOCAL-00004" summary="Add Licenses and read me">
-      <created>1543174415664</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1543174415664</updated>
-    </task>
-    <task id="LOCAL-00005" summary="Add Licenses and read me">
-      <created>1543174670658</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1543174670658</updated>
-    </task>
-    <task id="LOCAL-00006" summary="Rename the project.">
-      <created>1543174922865</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1543174922865</updated>
-    </task>
-    <task id="LOCAL-00007" summary="Rename the project.">
-      <created>1543175236416</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1543175236416</updated>
-    </task>
-    <task id="LOCAL-00008" summary="Rename the project.">
-      <created>1543175304655</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1543175304655</updated>
-    </task>
-    <task id="LOCAL-00009" summary="Remove unique to enum">
-      <created>1543175428394</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1543175428394</updated>
-    </task>
-    <task id="LOCAL-00010" summary="Optimize examples">
-      <created>1543176454063</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1543176454063</updated>
-    </task>
-    <task id="LOCAL-00011" summary="Optimize examples">
-      <created>1543176640338</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1543176640338</updated>
-    </task>
-    <task id="LOCAL-00012" summary="Update Read me">
-      <created>1543176834786</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1543176834786</updated>
-    </task>
-    <task id="LOCAL-00013" summary="Update Read me">
-      <created>1543179816966</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1543179816966</updated>
-    </task>
-    <task id="LOCAL-00014" summary="Update Read me">
-      <created>1543179952724</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1543179952724</updated>
-    </task>
-    <task id="LOCAL-00015" summary="Reformat main">
-      <created>1543412652067</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1543412652067</updated>
-    </task>
-    <task id="LOCAL-00016" summary="Reformat main">
-      <created>1569446092222</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1569446092222</updated>
-    </task>
-    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -324,32 +141,5 @@
         </entry>
       </map>
     </option>
-  </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="Initial Implementation" />
-    <MESSAGE value="Rename to FAPS Demonstrator API" />
-    <MESSAGE value="Add Licenses and read me" />
-    <MESSAGE value="Rename the project." />
-    <MESSAGE value="Remove unique to enum" />
-    <MESSAGE value="Optimize examples" />
-    <MESSAGE value="Update Read me" />
-    <MESSAGE value="Reformat main" />
-    <option name="LAST_COMMIT_MESSAGE" value="Reformat main" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/FAPSDemonstratorAPI/utils.py</url>
-          <line>91</line>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/example/_scan_product.py</url>
-          <line>18</line>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>
