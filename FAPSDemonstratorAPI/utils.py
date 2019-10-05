@@ -328,7 +328,8 @@ def calibrate_magazin(magazin_index=None, execute=False):
     # Check the parameter
     if magazin_index is None:
         return []
-        # get the position
+
+    # get the position
     m_position = MAGAZIN_POSITION_CAMERA[magazin_index]
     if m_position is None or len(m_position) < 3:
         return []
@@ -450,26 +451,340 @@ def calibrate_product(execute=False):
 
     return cmd_list
 
+def open_gripper(execute=False):
+    # Check the parameter
+    # Nothing to do
+    # Initialize the programm
+    temp = Program()
+    if execute is True:
+        temp.reset()
+
+    temp.append_instruction(
+        Command.CMD_SET_CONDITION,
+        CommandMode.WCD,
+        CND_GRIPPER_OPEN,
+        1,
+        0,
+        ParameterMode.ABSOLUTE,
+        0
+    )
+
+    cmd_list = temp.get_instructions()
+    # Execute the program
+    if execute is True:
+        temp.execute()
+
+    return cmd_list
+
+
+def close_gripper(execute=False):
+    # Check the parameter
+    # Nothing to do
+    # Initialize the programm
+    temp = Program()
+    if execute is True:
+        temp.reset()
+
+    temp.append_instruction(
+        Command.CMD_SET_CONDITION,
+        CommandMode.WCD,
+        CND_GRIPPER_OPEN,
+        0,
+        0,
+        ParameterMode.ABSOLUTE,
+        0
+    )
+
+    cmd_list = temp.get_instructions()
+    # Execute the program
+    if execute is True:
+        temp.execute()
+
+    return cmd_list
+
+
+def wait(timemillis=100, execute=False):
+    # Check the parameter
+    # Nothing to do
+    # Initialize the programm
+    temp = Program()
+    if execute is True:
+        temp.reset()
+
+    temp.append_instruction(
+        Command.CMD_WAIT_TIME,
+        CommandMode.WCD,
+        0,
+        0,
+        0,
+        ParameterMode.ABSOLUTE,
+        timemillis
+    )
+
+    cmd_list = temp.get_instructions()
+    # Execute the program
+    if execute is True:
+        temp.execute()
+
+    return cmd_list
+
 
 def take_gripper(gripper_index=None, execute=False):
     # Not implemented
     return []
 
 
-def pick_object(object_position=None, execute=False):
-    # Not implemented
-    return []
+def pick_object(object_position=None, final_destination=None, retain=False, execute=False):
+    # Check the parameter
+    if object_position is None or len(object_position) < 3:
+        return []
+
+    # Initialize the programm
+    temp = Program()
+    if execute is True:
+        temp.reset()
+
+    # Append all instructions
+    # Go 10mm above the object position
+    temp.append_instruction(
+        Command.CMD_POS_ABS_XYZ,
+        CommandMode.WCD,
+        object_position[0],
+        object_position[1],
+        object_position[2] + 100,
+        ParameterMode.ABSOLUTE,
+        0
+    )
+
+    # set the velocity to 10%
+    temp.append_instruction(
+        Command.CMD_SET_PATH_VELO,
+        CommandMode.WCD,
+        10.0,
+        0,
+        0,
+        ParameterMode.ABSOLUTE,
+        0
+    )
+
+    # Open the gripper
+    temp.append_instruction(
+        Command.CMD_SET_CONDITION,
+        CommandMode.WCD,
+        CND_GRIPPER_OPEN,
+        1,
+        0,
+        ParameterMode.ABSOLUTE,
+        0
+    )
+
+    # Go slowly to the product position
+    temp.append_instruction(
+        Command.CMD_POS_ABS_XYZ,
+        CommandMode.WCD,
+        object_position[0],
+        object_position[1],
+        object_position[2],
+        ParameterMode.ABSOLUTE,
+        0
+    )
+
+    # Wait 500 ms
+    temp.append_instruction(
+        Command.CMD_WAIT_TIME,
+        CommandMode.WCD,
+        0,
+        0,
+        0,
+        ParameterMode.ABSOLUTE,
+        500
+    )
+
+    # set the velocity back to 50%
+    temp.append_instruction(
+        Command.CMD_SET_PATH_VELO,
+        CommandMode.WCD,
+        50,
+        0,
+        0,
+        ParameterMode.ABSOLUTE,
+        0
+    )
+    if retain is False:
+        # Close the gripper
+        temp.append_instruction(
+            Command.CMD_SET_CONDITION,
+            CommandMode.WCD,
+            CND_GRIPPER_OPEN,
+            0,
+            0,
+            ParameterMode.ABSOLUTE,
+            0
+        )
+
+    # Go 100 mm above the object position
+    temp.append_instruction(
+        Command.CMD_POS_ABS_XYZ,
+        CommandMode.WCD,
+        object_position[0],
+        object_position[1],
+        object_position[2] + 100,
+        ParameterMode.ABSOLUTE,
+        0
+    )
+
+    if not (final_destination is None or len(final_destination) < 3):
+        # Go to the final destination
+        temp.append_instruction(
+            Command.CMD_POS_ABS_XYZ,
+            CommandMode.WCD,
+            final_destination[0],
+            final_destination[1],
+            final_destination[2],
+            ParameterMode.ABSOLUTE,
+            0
+        )
+
+    cmd_list = temp.get_instructions()
+    # Execute the program
+    if execute is True:
+        temp.execute()
+
+    return cmd_list
 
 
 def take_object(object_position=None, execute=False):
-    return pick_object(object_position,execute)
+    return pick_object(object_position, execute)
 
 
-def place_object(place_object_position=None, execute=False):
-    # Not implemented
-    return []
+def place_object(place_destination=None, final_destination=None, execute=False):
+    # Check the parameter
+    if place_destination is None or len(place_destination) < 3:
+        return []
+
+    # Initialize the programm
+    temp = Program()
+    if execute is True:
+        temp.reset()
+
+    # Append all instructions
+    # Go 10mm above the object position
+    temp.append_instruction(
+        Command.CMD_POS_ABS_XYZ,
+        CommandMode.WCD,
+        place_destination[0],
+        place_destination[1],
+        place_destination[2] + 100,
+        ParameterMode.ABSOLUTE,
+        0
+    )
+
+    # set the velocity to 10%
+    temp.append_instruction(
+        Command.CMD_SET_PATH_VELO,
+        CommandMode.WCD,
+        10.0,
+        0,
+        0,
+        ParameterMode.ABSOLUTE,
+        0
+    )
+
+    # Go slowly to the product position
+    temp.append_instruction(
+        Command.CMD_POS_ABS_XYZ,
+        CommandMode.WCD,
+        place_destination[0],
+        place_destination[1],
+        place_destination[2],
+        ParameterMode.ABSOLUTE,
+        0
+    )
+
+    # Wait 500 ms
+    temp.append_instruction(
+        Command.CMD_WAIT_TIME,
+        CommandMode.WCD,
+        0,
+        0,
+        0,
+        ParameterMode.ABSOLUTE,
+        500
+    )
+
+    # Close the gripper
+    temp.append_instruction(
+        Command.CMD_SET_CONDITION,
+        CommandMode.WCD,
+        CND_GRIPPER_OPEN,
+        0,
+        0,
+        ParameterMode.ABSOLUTE,
+        0
+    )
+
+    # set the velocity back to 50%
+    temp.append_instruction(
+        Command.CMD_SET_PATH_VELO,
+        CommandMode.WCD,
+        50,
+        0,
+        0,
+        ParameterMode.ABSOLUTE,
+        0
+    )
+
+    # Go 100 mm above the object position
+    temp.append_instruction(
+        Command.CMD_POS_ABS_XYZ,
+        CommandMode.WCD,
+        place_destination[0],
+        place_destination[1],
+        place_destination[2] + 100,
+        ParameterMode.ABSOLUTE,
+        0
+    )
+
+    if not (final_destination is None or len(final_destination) < 3):
+        # Go to the final destination
+        temp.append_instruction(
+            Command.CMD_POS_ABS_XYZ,
+            CommandMode.WCD,
+            final_destination[0],
+            final_destination[1],
+            final_destination[2],
+            ParameterMode.ABSOLUTE,
+            0
+        )
+
+    cmd_list = temp.get_instructions()
+    # Execute the program
+    if execute is True:
+        temp.execute()
+
+    return cmd_list
 
 
-def pick_and_place_object(object_position=None, place_object_position=None, execute=False):
-    # Not implemented
-    return []
+def pick_and_place_object(object_position=None, place_destination=None, execute=False):
+    # Check the parameter
+    if place_destination is None or len(place_destination) < 3:
+        return []
+
+    if object_position is None or len(object_position) < 3:
+        return []
+
+    # Initialize the programm
+    temp = Program()
+    if execute is True:
+        temp.reset()
+
+    # append instructions
+    temp.append_all_instructions(pick_object(object_position=object_position, retain=True, execute=False))
+    temp.append_all_instructions(place_object(place_destination=place_destination, execute=False))
+
+    cmd_list = temp.get_instructions()
+    # Execute the program
+    if execute is True:
+        temp.execute()
+
+    return cmd_list
