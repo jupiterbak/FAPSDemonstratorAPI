@@ -583,7 +583,7 @@ def pick_object(object_position=None, final_destination=None, retain=False, exec
         CommandMode.WCD,
         object_position[0],
         object_position[1],
-        object_position[2] + 130,
+        object_position[2] + 200,
         ParameterMode.ABSOLUTE,
         0
     )
@@ -660,7 +660,7 @@ def pick_object(object_position=None, final_destination=None, retain=False, exec
         CommandMode.WCD,
         object_position[0],
         object_position[1],
-        object_position[2] + 130,
+        object_position[2] + 200,
         ParameterMode.ABSOLUTE,
         0
     )
@@ -706,7 +706,7 @@ def place_object(place_destination=None, final_destination=None, execute=False):
         CommandMode.WCD,
         place_destination[0],
         place_destination[1],
-        place_destination[2] + 130,
+        place_destination[2] + 200,
         ParameterMode.ABSOLUTE,
         0
     )
@@ -772,7 +772,7 @@ def place_object(place_destination=None, final_destination=None, execute=False):
         CommandMode.WCD,
         place_destination[0],
         place_destination[1],
-        place_destination[2] + 130,
+        place_destination[2] + 200,
         ParameterMode.ABSOLUTE,
         0
     )

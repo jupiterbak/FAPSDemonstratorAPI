@@ -249,7 +249,8 @@ class Service:
                 data = {
                     "time": datetime.datetime.now().timestamp(),
                     "start": True,
-                    "object": m
+                    "object": m,
+                    "order": order
                 }
                 self.channel.basic_publish(exchange=self.exchange_image_processing_pub_name,
                                       routing_key='',

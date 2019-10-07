@@ -2,24 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8f3b58fc-4f84-4a6b-8c22-f36b34300dec" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/FAPSApplicationService.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TransformationMatrix/Magazin_0_world3D.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TransformationMatrix/Magazin_1_world3D.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TransformationMatrix/Magazin_2_world3D.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TransformationMatrix/Magazin_3_world3D.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TransformationMatrix/Magazin_4_world3D.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TransformationMatrix/Product_world3D.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TransformationMatrix/camera_parameter.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/example/_goto_by_segment.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/example/_send_dummy_order.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/example/_take_product_picture_processing.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FAPSApplicationService.py" beforeDir="false" afterPath="$PROJECT_DIR$/FAPSApplicationService.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FAPSDemonstratorAPI/ApplicationConstants.py" beforeDir="false" afterPath="$PROJECT_DIR$/FAPSDemonstratorAPI/ApplicationConstants.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FAPSDemonstratorAPI/command.py" beforeDir="false" afterPath="$PROJECT_DIR$/FAPSDemonstratorAPI/command.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FAPSDemonstratorAPI/program.py" beforeDir="false" afterPath="$PROJECT_DIR$/FAPSDemonstratorAPI/program.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FAPSDemonstratorAPI/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/FAPSDemonstratorAPI/utils.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -211,7 +197,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/FAPSApplicationService.py</url>
-          <line>282</line>
+          <line>283</line>
           <option name="timeStamp" value="25" />
         </line-breakpoint>
       </breakpoints>
