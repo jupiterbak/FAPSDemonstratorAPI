@@ -82,6 +82,8 @@ class Program:
         self.channel = None
         self.connected = False
 
+        self.ready = False
+
     def connect(self):
         """
             Connect the FAPSDemonstratorAPI to the demonstrator.
@@ -101,7 +103,9 @@ class Program:
             )
 
             self.connected = True
+            self.ready = True
             return True
+
         except Exception:
             if not (self.channel is None):
                 self.channel.close()
@@ -110,6 +114,7 @@ class Program:
                 self.connection.close()
                 self.connection = None
             self.connected = False
+            self.ready = False
             return False
 
     def execute(self):
@@ -121,6 +126,7 @@ class Program:
             return False
         try:
             if self.connected:
+                self.ready = False
                 # Add a return instruction to ensure a safe return
                 self.append_instruction(
                     command.Command.CMD_JUMP_TO_SETNUMBER,
@@ -133,11 +139,15 @@ class Program:
                 )
                 # Turn on delivery confirmations
                 self.channel.confirm_delivery()
-                return self.channel.basic_publish('FAPS_DEMONSTRATOR_ProgramManagement_ProgramFromCloud', '', self.get_json(),
+                self.channel.basic_publish('FAPS_DEMONSTRATOR_ProgramManagement_ProgramFromCloud', '', self.get_json(),
                                                   pika.BasicProperties(delivery_mode=1))
+                self.ready = True
+                return True
             else:
+                self.ready = False
                 return False
         except Exception:
+            self.ready = False
             return False
 
     def reset(self):

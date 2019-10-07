@@ -2,16 +2,37 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8f3b58fc-4f84-4a6b-8c22-f36b34300dec" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/example/_pickup_object.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/example/_take_product_picture.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FAPSApplicationService.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TransformationMatrix/Magazin_0_world3D.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TransformationMatrix/Magazin_1_world3D.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TransformationMatrix/Magazin_2_world3D.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TransformationMatrix/Magazin_3_world3D.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TransformationMatrix/Magazin_4_world3D.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TransformationMatrix/Product_world3D.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TransformationMatrix/camera_parameter.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/example/_goto_by_segment.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/example/_send_dummy_order.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/example/_take_product_picture_processing.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FAPSDemonstratorAPI/ApplicationConstants.py" beforeDir="false" afterPath="$PROJECT_DIR$/FAPSDemonstratorAPI/ApplicationConstants.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FAPSDemonstratorAPI/command.py" beforeDir="false" afterPath="$PROJECT_DIR$/FAPSDemonstratorAPI/command.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FAPSDemonstratorAPI/program.py" beforeDir="false" afterPath="$PROJECT_DIR$/FAPSDemonstratorAPI/program.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FAPSDemonstratorAPI/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/FAPSDemonstratorAPI/utils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -23,6 +44,7 @@
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\WORKSPACE_JBK\GITHUB\DEMONSTRATOR_PROGRAM_API\example" />
+      <recent name="E:\WORKSPACE_JBK\GITHUB\DEMONSTRATOR_PROGRAM_API\TransformationMatrix" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -37,8 +59,8 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python._take_product_picture">
-    <configuration name="_calibrate_camera" type="PythonConfigurationType" factoryName="Python" temporary="true">
+  <component name="RunManager" selected="Python.FAPSApplicationService">
+    <configuration name="FAPSApplicationService" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="DEMONSTRATOR_PROGRAM_API" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -46,11 +68,11 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/example" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/example/_calibrate_camera.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/FAPSApplicationService.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -59,7 +81,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="_calibrate_magazin" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="_goto_by_segment" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="DEMONSTRATOR_PROGRAM_API" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -71,28 +93,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/example/_calibrate_magazin.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="_calibrate_product" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="DEMONSTRATOR_PROGRAM_API" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/example" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/example/_calibrate_product.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/example/_goto_by_segment.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -122,7 +123,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="_take_product_picture" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="_scan_magazin" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="DEMONSTRATOR_PROGRAM_API" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -134,7 +135,28 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/example/_take_product_picture.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/example/_scan_magazin.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="simple_example" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="DEMONSTRATOR_PROGRAM_API" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/example" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/example/simple_example.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -145,11 +167,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python._take_product_picture" />
+        <item itemvalue="Python.FAPSApplicationService" />
         <item itemvalue="Python._pickup_object" />
-        <item itemvalue="Python._calibrate_product" />
-        <item itemvalue="Python._calibrate_magazin" />
-        <item itemvalue="Python._calibrate_camera" />
+        <item itemvalue="Python._goto_by_segment" />
+        <item itemvalue="Python.simple_example" />
+        <item itemvalue="Python._scan_magazin" />
       </list>
     </recent_temporary>
   </component>
@@ -178,5 +200,21 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/FAPSApplicationService.py</url>
+          <line>90</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/FAPSApplicationService.py</url>
+          <line>282</line>
+          <option name="timeStamp" value="25" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

@@ -1,3 +1,9 @@
 numpy
 deap
 pika
+PyYAML
+pandas
+opencv-python
+matplotlib
+Pillow
+opencv-contrib-python

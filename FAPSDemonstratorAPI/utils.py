@@ -76,7 +76,7 @@ def goto_product_camera_position(execute=False):
     temp.append_instruction(
         Command.CMD_SET_PATH_VELO,
         CommandMode.WCD,
-        30,
+        80,
         0,
         0,
         ParameterMode.ABSOLUTE,
@@ -162,7 +162,7 @@ def goto_magazin_camera_position(magazin_index=None, execute=False):
     temp.append_instruction(
         Command.CMD_SET_PATH_VELO,
         CommandMode.WCD,
-        30,
+        80,
         0,
         0,
         ParameterMode.ABSOLUTE,
@@ -372,6 +372,7 @@ def calibrate_all_magazins(execute=False):
 
     return cmd_list
 
+
 def calibrate_camera( execute=False):
     # Check the parameter
     # We will consider only the 4th magazin position
@@ -389,7 +390,7 @@ def calibrate_camera( execute=False):
     temp.append_instruction(
         Command.CMD_SET_PATH_VELO,
         CommandMode.WCD,
-        30,
+        80,
         0,
         0,
         ParameterMode.ABSOLUTE,
@@ -450,6 +451,37 @@ def calibrate_product(execute=False):
         temp.execute()
 
     return cmd_list
+
+
+def take_picture_of_magazin(magazin_index=None, execute=False):
+    # Check the parameter
+    if magazin_index is None:
+        return []
+
+    # get the position
+    m_position = MAGAZIN_POSITION_CAMERA[magazin_index]
+    if m_position is None or len(m_position) < 3:
+        return []
+
+    # Initialize the programm
+    temp = Program()
+    if execute is True:
+        temp.reset()
+
+    # Append all instructions
+    # Go to the target position
+    temp.append_all_instructions(goto_magazin_camera_position(magazin_index, execute=False))
+
+    # Take a picture
+    temp.append_all_instructions(take_picture(execute=False))
+
+    cmd_list = temp.get_instructions()
+    # Execute the program
+    if execute is True:
+        temp.execute()
+
+    return cmd_list
+
 
 def open_gripper(execute=False):
     # Check the parameter
@@ -551,7 +583,7 @@ def pick_object(object_position=None, final_destination=None, retain=False, exec
         CommandMode.WCD,
         object_position[0],
         object_position[1],
-        object_position[2] + 100,
+        object_position[2] + 130,
         ParameterMode.ABSOLUTE,
         0
     )
@@ -604,7 +636,7 @@ def pick_object(object_position=None, final_destination=None, retain=False, exec
     temp.append_instruction(
         Command.CMD_SET_PATH_VELO,
         CommandMode.WCD,
-        50,
+        100,
         0,
         0,
         ParameterMode.ABSOLUTE,
@@ -628,7 +660,7 @@ def pick_object(object_position=None, final_destination=None, retain=False, exec
         CommandMode.WCD,
         object_position[0],
         object_position[1],
-        object_position[2] + 100,
+        object_position[2] + 130,
         ParameterMode.ABSOLUTE,
         0
     )
@@ -674,7 +706,7 @@ def place_object(place_destination=None, final_destination=None, execute=False):
         CommandMode.WCD,
         place_destination[0],
         place_destination[1],
-        place_destination[2] + 100,
+        place_destination[2] + 130,
         ParameterMode.ABSOLUTE,
         0
     )
@@ -727,7 +759,7 @@ def place_object(place_destination=None, final_destination=None, execute=False):
     temp.append_instruction(
         Command.CMD_SET_PATH_VELO,
         CommandMode.WCD,
-        50,
+        100,
         0,
         0,
         ParameterMode.ABSOLUTE,
@@ -740,7 +772,7 @@ def place_object(place_destination=None, final_destination=None, execute=False):
         CommandMode.WCD,
         place_destination[0],
         place_destination[1],
-        place_destination[2] + 100,
+        place_destination[2] + 130,
         ParameterMode.ABSOLUTE,
         0
     )
@@ -771,6 +803,60 @@ def pick_and_place_object(object_position=None, place_destination=None, execute=
         return []
 
     if object_position is None or len(object_position) < 3:
+        return []
+
+    # Initialize the programm
+    temp = Program()
+    if execute is True:
+        temp.reset()
+
+    # append instructions
+    temp.append_all_instructions(pick_object(object_position=object_position, retain=True, execute=False))
+    temp.append_all_instructions(place_object(place_destination=place_destination, execute=False))
+
+    cmd_list = temp.get_instructions()
+    # Execute the program
+    if execute is True:
+        temp.execute()
+
+    return cmd_list
+
+
+def pick_object_by_segment(object_position=None, place_destination=None,
+                                     start_segment=None, execute=False):
+    # Check the parameter
+    if place_destination is None or len(place_destination) < 3:
+        return []
+
+    if object_position is None or len(object_position) < 3:
+        return []
+
+    # Initialize the programm
+    temp = Program()
+    if execute is True:
+        temp.reset()
+
+    # append instructions
+    temp.append_all_instructions(pick_object(object_position=object_position, retain=True, execute=False))
+    temp.append_all_instructions(place_object(place_destination=place_destination, execute=False))
+
+    cmd_list = temp.get_instructions()
+    # Execute the program
+    if execute is True:
+        temp.execute()
+
+    return cmd_list
+
+def pick_and_place_object_by_segment(object_position=None, place_destination=None,
+                                     start_segment=None, end_segment=None, execute=False):
+    # Check the parameter
+    if place_destination is None or len(place_destination) < 3:
+        return []
+
+    if object_position is None or len(object_position) < 3:
+        return []
+
+    if start_segment is None or end_segment is None:
         return []
 
     # Initialize the programm
