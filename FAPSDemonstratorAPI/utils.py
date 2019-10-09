@@ -483,6 +483,58 @@ def take_picture_of_magazin(magazin_index=None, execute=False):
     return cmd_list
 
 
+def take_picture_of_magazin_by_segment(magazin_index=None, execute=False):
+    # Check the parameter
+    if magazin_index is None:
+        return []
+
+    # Initialize the programm
+    temp = Program()
+    if execute is True:
+        temp.reset()
+
+    # Append all instructions
+    # Go to the target position
+    temp.append_instruction(
+            Command.CMD_POS_BASIC_SEGMENT,
+            CommandMode.WCD,
+            PT_CURRENT,
+            PT_MAGAZIN_ARRAY[magazin_index],
+            0,
+            ParameterMode.ABSOLUTE,
+            0
+        )
+
+    # Take a picture
+    temp.append_all_instructions(take_picture(execute=False))
+
+    cmd_list = temp.get_instructions()
+    # Execute the program
+    if execute is True:
+        temp.execute()
+
+    return cmd_list
+
+
+def take_picture_of_all_magazin_by_segment(execute=False):
+    # Check the parameter
+    # Nothing to do
+    # Initialize the programm
+    temp = Program()
+    if execute is True:
+        temp.reset()
+
+    for i in range(len(MAGAZIN_POSITION_CAMERA)):
+        temp.append_all_instructions(take_picture_of_magazin_by_segment(i, execute=False))
+
+    cmd_list = temp.get_instructions()
+    # Execute the program
+    if execute is True:
+        temp.execute()
+
+    return cmd_list
+
+
 def open_gripper(execute=False):
     # Check the parameter
     # Nothing to do
@@ -821,31 +873,6 @@ def pick_and_place_object(object_position=None, place_destination=None, execute=
 
     return cmd_list
 
-
-def pick_object_by_segment(object_position=None, place_destination=None,
-                                     start_segment=None, execute=False):
-    # Check the parameter
-    if place_destination is None or len(place_destination) < 3:
-        return []
-
-    if object_position is None or len(object_position) < 3:
-        return []
-
-    # Initialize the programm
-    temp = Program()
-    if execute is True:
-        temp.reset()
-
-    # append instructions
-    temp.append_all_instructions(pick_object(object_position=object_position, retain=True, execute=False))
-    temp.append_all_instructions(place_object(place_destination=place_destination, execute=False))
-
-    cmd_list = temp.get_instructions()
-    # Execute the program
-    if execute is True:
-        temp.execute()
-
-    return cmd_list
 
 def pick_and_place_object_by_segment(object_position=None, place_destination=None,
                                      start_segment=None, end_segment=None, execute=False):

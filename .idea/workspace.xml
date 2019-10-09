@@ -3,9 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="8f3b58fc-4f84-4a6b-8c22-f36b34300dec" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FAPSApplicationService.py" beforeDir="false" afterPath="$PROJECT_DIR$/FAPSApplicationService.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FAPSDemonstratorAPI/ApplicationConstants.py" beforeDir="false" afterPath="$PROJECT_DIR$/FAPSDemonstratorAPI/ApplicationConstants.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FAPSDemonstratorAPI/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/FAPSDemonstratorAPI/utils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/_goto_by_segment.py" beforeDir="false" afterPath="$PROJECT_DIR$/example/_goto_by_segment.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -45,7 +45,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.FAPSApplicationService">
+  <component name="RunManager" selected="Python._goto_by_segment">
     <configuration name="FAPSApplicationService" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="DEMONSTRATOR_PROGRAM_API" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -153,9 +153,9 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python._goto_by_segment" />
         <item itemvalue="Python.FAPSApplicationService" />
         <item itemvalue="Python._pickup_object" />
-        <item itemvalue="Python._goto_by_segment" />
         <item itemvalue="Python.simple_example" />
         <item itemvalue="Python._scan_magazin" />
       </list>
