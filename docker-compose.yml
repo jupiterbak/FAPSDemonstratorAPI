@@ -1,0 +1,21 @@
+# Docker Compose description of the combined application.
+#
+# 'docker-compose up' will run this.
+version: '3'  # requires Docker Compose 1.13 or later
+
+# This section describes the various containers (services).
+services:
+
+  faps_application_service:
+    # If needed, Docker Compose will automatically run consumer/Dockerfile.
+    build: .
+    restart: always
+    # Again, run on the private network.  Needed to see the "rabbitmq"
+    # magic Docker DNS name.
+    networks:
+      - api_network
+
+networks:
+  # Declare our private network.  We must declare one for the magic
+  # Docker DNS to work, but otherwise its default settings are fine.
+  api_network:
