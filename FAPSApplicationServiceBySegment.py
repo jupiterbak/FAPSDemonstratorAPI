@@ -6,6 +6,8 @@ import datetime
 import json
 import logging
 import os
+import threading
+import time
 
 import numpy as np
 from numpy.linalg import inv
@@ -60,10 +62,18 @@ class Service:
         self.exchange_image_processing_pub_name = None
         self.exchange_order_processing_result_pub_name = None
 
+        self.exchange_conveyor_data = None
+        self.exchange_conveyor_data_name = None
+        self.exchange_conveyor_pub = None
+        self.exchange_conveyor_pub_name = None
+
         self.queue_order = None
         self.queue_image_processing = None
         self.queue_image_processing_pub = None
         self.queue_order_processing_result_pub = None
+
+        self.queue_conveyor_data = None
+        self.queue_conveyor_pub = None
 
         self.demonstrator_program = Program()
 
@@ -72,6 +82,9 @@ class Service:
         self.dist = None
         self.newcameramtx = None
         self.roi = None
+
+        # Syncho mit Conveyor
+        self.Produkt_Band2_Bereit = False
 
         # read the camera intrinsic parameters
         logger.info('Read the camera intrinsic parameters')
@@ -125,6 +138,12 @@ class Service:
             self.picture_marker_counter = self.picture_marker_counter - tmp["marker_count"]
             self.process_order_pick_and_place(order, self.image_marker_map)
 
+    def conveyor_data_callback(self, ch, method, properties, data):
+        body = json.loads(data)
+        _value = body['value']
+        _DB = _value['DB33']
+        self.Produkt_Band2_Bereit = _DB['Produkt_Band2_Bereit']
+
     def incoming_order_signals_callback(self, ch, method, properties, data):
         logger.info("Incoming Order")
         body = json.loads(data)
@@ -140,7 +159,14 @@ class Service:
                                     _exchange_image_processing,
                                     _queue_image_processing, _exchange_image_processing_pub,
                                     _queue_image_processing_pub, _exchange_order_processing_result_pub,
-                                    _queue_order_processing_result_pub, _callback_order, _callback_image_processing):
+                                    _queue_order_processing_result_pub,
+                                    _exchange_conveyor_data,
+                                    _queue_conveyor_data,
+                                    _exchange_conveyor_pub,
+                                    _queue_conveyor_pub,
+                                    _callback_order,
+                                    _callback_image_processing,
+                                    _callback_conveyor_data):
         """
             Connect the FAPSDemonstratorAPI to the demonstrator.
         :return true if the connect has been established or false otherwise.
@@ -185,6 +211,22 @@ class Service:
                 exchange_type='fanout'
             )
 
+            self.exchange_conveyor_data_name = _exchange_conveyor_data
+            self.exchange_conveyor_data = self.channel.exchange_declare(
+                exchange=_exchange_conveyor_data,
+                passive=False,
+                durable=False,
+                exchange_type='fanout'
+            )
+
+            self.exchange_conveyor_pub_name = _exchange_conveyor_pub
+            self.exchange_conveyor_pub = self.channel.exchange_declare(
+                exchange=_exchange_conveyor_pub,
+                passive=False,
+                durable=False,
+                exchange_type='fanout'
+            )
+
             self.queue_order = self.channel.queue_declare(
                 queue=_queue_order,
                 durable=False,
@@ -210,6 +252,20 @@ class Service:
                 auto_delete=True,
             ).method.queue
 
+            self.queue_conveyor_data = self.channel.queue_declare(
+                queue=_queue_conveyor_data,
+                durable=False,
+                exclusive=False,
+                auto_delete=True,
+            ).method.queue
+
+            self.queue_conveyor_pub = self.channel.queue_declare(
+                queue=_queue_conveyor_pub,
+                durable=False,
+                exclusive=False,
+                auto_delete=True,
+            ).method.queue
+
             self.channel.queue_bind(exchange=_exchange_order, queue=self.queue_order, routing_key='')
             self.channel.queue_bind(exchange=_exchange_image_processing,
                                     queue=self.queue_image_processing, routing_key='')
@@ -217,11 +273,19 @@ class Service:
                                     queue=self.queue_image_processing_pub, routing_key='')
             self.channel.queue_bind(exchange=_exchange_order_processing_result_pub,
                                     queue=self.queue_order_processing_result_pub, routing_key='')
+            self.channel.queue_bind(exchange=_exchange_conveyor_data,
+                                    queue=self.queue_conveyor_data, routing_key='')
+            self.channel.queue_bind(exchange=_exchange_conveyor_pub,
+                                     queue=self.queue_conveyor_pub, routing_key='')
 
             # bind the call back to the demonstrator FAPSDemonstratorAPI and start listening
             self.channel.basic_consume(on_message_callback=_callback_order, queue=self.queue_order, auto_ack=True)
             self.channel.basic_consume(on_message_callback=_callback_image_processing, queue=self.queue_image_processing,
                                        auto_ack=True)
+            self.channel.basic_consume(on_message_callback=_callback_conveyor_data,
+                                       queue=self.queue_conveyor_data,
+                                       auto_ack=True)
+
             try:
                 self.channel.start_consuming()
             except KeyboardInterrupt:
@@ -346,11 +410,35 @@ class Service:
                     self.target_position_counter = 0
 
             #  Start the execution
+            # while(self.Produkt_Band2_Bereit is False):
+            #    time.sleep(.300)
+
             self.demonstrator_program.execute()
+
+            # Make the callback for the Conveyor
+            threading.Timer(30, self.set_conveyor_signal).start()
+
             return True
         else:
             logger.warning('Connection cannot be established to the Demonstrator')
             return False
+
+    def set_conveyor_signal(self):
+        data = {
+            "Linearachse_Fertig": 1,
+        }
+        self.channel.basic_publish(exchange=self.exchange_conveyor_pub_name,
+                                   routing_key='',
+                                   body=json.dumps(data))
+        threading.Timer(3, self.reset_conveyor_signal).start()
+
+    def reset_conveyor_signal(self):
+        data = {
+            "Linearachse_Fertig": 0,
+        }
+        self.channel.basic_publish(exchange=self.exchange_conveyor_pub_name,
+                                   routing_key='',
+                                   body=json.dumps(data))
 
 
 if __name__ == '__main__':
@@ -370,6 +458,11 @@ if __name__ == '__main__':
         _queue_image_processing_pub="FAPS_DEMONSTRATOR_ImageProcessing_ProcessingSignals",
         _exchange_order_processing_result_pub="FAPS_DEMONSTRATOR_OrderProcessing_Results",
         _queue_order_processing_result_pub="FAPS_DEMONSTRATOR_OrderProcessing_Results",
+        _exchange_conveyor_data="FAPS_DEMONSTRATOR_LiveStreamData_ConveyorData",
+        _queue_conveyor_data="FAPS_DEMONSTRATOR_LiveStreamData_ConveyorData_API",
+        _exchange_conveyor_pub="FAPS_DEMONSTRATOR_Conveyor_DataFromCloud",
+        _queue_conveyor_pub="FAPS_DEMONSTRATOR_Conveyor_DataFromCloud_API",
         _callback_order=service.incoming_order_signals_callback,
-        _callback_image_processing=service.incoming_picture_marker_callback
+        _callback_image_processing=service.incoming_picture_marker_callback,
+        _callback_conveyor_data=service.conveyor_data_callback
     )

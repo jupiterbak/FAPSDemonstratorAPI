@@ -758,7 +758,7 @@ def place_object(place_destination=None, final_destination=None, execute=False):
         CommandMode.WCD,
         place_destination[0],
         place_destination[1],
-        place_destination[2] + 200,
+        place_destination[2] + 150,
         ParameterMode.ABSOLUTE,
         0
     )
@@ -824,7 +824,7 @@ def place_object(place_destination=None, final_destination=None, execute=False):
         CommandMode.WCD,
         place_destination[0],
         place_destination[1],
-        place_destination[2] + 200,
+        place_destination[2] + 150,
         ParameterMode.ABSOLUTE,
         0
     )
