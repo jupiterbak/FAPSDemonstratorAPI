@@ -86,12 +86,12 @@ MAGAZIN_POSITION_CAMERA = \
 # Define product position camera
 PRODUCT_POSITION_CAMERA = [1442, -94, 170]
 
-PRODUCT_PLACE_POSITION = [1442, -94, 0]
+PRODUCT_SINGLE_PLACE_POSITION = [1442, -94, 0]
 
 PRODUCT_PLACE_POSITION_IN_BOX = [
-    [1392, -64, -90.0],
-    [1392, -200, -90.0],
-    [1492, -64, -90.0],
-    [1492, -200, -90.0]
+    [1360, -78, 10.0],
+    [1360, -230, 10.0],
+    [1500, -78, 10.0],
+    [1500, -230, 10.0]
 ]
 
