@@ -148,12 +148,13 @@ class Service:
         logger.info("Incoming Order")
         body = json.loads(data)
         self.order_queue.append(body)
+        self.set_conveyor_order_signal()
         if len(self.order_queue) > 0:
             current_order = self.order_queue.pop(0)
             # TODO: Add a separate process to do it
-            p_order_rslt = self.process_order_pick_and_place(current_order, self.image_marker_map)
-            if p_order_rslt is False:
-                self.start_scanning_magazin(current_order)
+            # p_order_rslt = self.process_order_pick_and_place(current_order, self.image_marker_map)
+            # if p_order_rslt is False:
+            self.start_scanning_magazin(current_order)
 
     def connect_and_start_listening(self, _url, _port, _user, _passwd, _exchange_order, _queue_order,
                                     _exchange_image_processing,
@@ -387,9 +388,11 @@ class Service:
                                                              dist_coeffs= self.dist,
                                                              rvec=self.transformation_matrices[p_magazin]["rvect"],
                                                              tvec=self.transformation_matrices[p_magazin]["tvec"],
-                                                             z=-90.0
+                                                             z=-100.0
                                                           )
-                        pick_positions.append([wcPoint[0, 0], wcPoint[1, 0], wcPoint[2, 0]])
+                        # pick_positions.append([wcPoint[0, 0], wcPoint[1, 0], wcPoint[2, 0]])
+                        # TODO: remenber to update
+                        pick_positions.append([wcPoint[0, 0], wcPoint[1, 0] + 5, wcPoint[2, 0]])
                     else:
                         logger.error("Product {} was not found".format(p))
                         print("Product {} was not found".format(p))
@@ -400,28 +403,47 @@ class Service:
                     return False
 
             # Generate the program from the Pick positions
+            _count_place = 0
             for wc in pick_positions:
                 self.demonstrator_program.append_all_instructions(utils.pick_and_place_object(
                     object_position=wc,
                     place_destination=PRODUCT_PLACE_POSITION_IN_BOX[self.target_position_counter])
                 )
                 self.target_position_counter = self.target_position_counter + 1
+                _count_place = _count_place + 7
                 if self.target_position_counter >= len(PRODUCT_PLACE_POSITION_IN_BOX):
                     self.target_position_counter = 0
 
             #  Start the execution
-            # while(self.Produkt_Band2_Bereit is False):
-            #    time.sleep(.300)
+            while(self.Produkt_Band2_Bereit is False):
+                time.sleep(.300)
 
             self.demonstrator_program.execute()
 
             # Make the callback for the Conveyor
-            threading.Timer(30, self.set_conveyor_signal).start()
+            threading.Timer(_count_place + 5, self.set_conveyor_signal).start()
 
             return True
         else:
             logger.warning('Connection cannot be established to the Demonstrator')
             return False
+
+    def set_conveyor_order_signal(self):
+        data = {
+            "START": 1,
+        }
+        self.channel.basic_publish(exchange=self.exchange_conveyor_pub_name,
+                                   routing_key='',
+                                   body=json.dumps(data))
+        threading.Timer(3, self.reset_conveyor_order_signal).start()
+
+    def reset_conveyor_order_signal(self):
+        data = {
+            "START": 0,
+        }
+        self.channel.basic_publish(exchange=self.exchange_conveyor_pub_name,
+                                   routing_key='',
+                                   body=json.dumps(data))
 
     def set_conveyor_signal(self):
         data = {

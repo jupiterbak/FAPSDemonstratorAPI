@@ -78,7 +78,7 @@ def periodic_main():
         "time": datetime.now().timestamp(),
         "start": True,
         "object": "PRODUCT",
-        "list": ["faps", "faps", "faps"]
+        "list": ["hanuta"]
     }
 
     channel.basic_publish(exchange="FAPS_DEMONSTRATOR_OrderManagement_Orders",

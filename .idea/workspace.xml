@@ -4,7 +4,6 @@
     <list default="true" id="8f3b58fc-4f84-4a6b-8c22-f36b34300dec" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FAPSApplicationServiceBySegment.py" beforeDir="false" afterPath="$PROJECT_DIR$/FAPSApplicationServiceBySegment.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FAPSDemonstratorAPI/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/FAPSDemonstratorAPI/utils.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/example/_send_dummy_order.py" beforeDir="false" afterPath="$PROJECT_DIR$/example/_send_dummy_order.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -46,7 +45,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python._take_product_picture">
+  <component name="RunManager" selected="Python.FAPSApplicationServiceBySegment">
     <configuration name="FAPSApplicationService" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="DEMONSTRATOR_PROGRAM_API" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -162,8 +161,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python._take_product_picture" />
         <item itemvalue="Python.FAPSApplicationServiceBySegment" />
+        <item itemvalue="Python._take_product_picture" />
         <item itemvalue="Python.FAPSApplicationService" />
         <item itemvalue="Python._scan_product" />
         <item itemvalue="Python._take_picture_of_magazin_by_segment" />
