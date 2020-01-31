@@ -5,38 +5,19 @@ from __future__ import print_function
 import datetime
 import json
 import logging
-import os
 import threading
-import time
 
 import cv2
 import numpy as np
 import pika
-import yaml
 from cv2.cv2 import *
 from numpy.linalg import inv
 
-from FAPSDemonstratorAPI import Program, MAGAZINS_NAMES
+from FAPSDemonstratorAPI import Program, MAGAZINS_NAMES, utils
 
 logging.basicConfig(format='%(asctime)-15s [%(levelname)] [%(name)-12s] %(message)s', datefmt='%d-%b-%y %H:%M:%S')
 logger = logging.getLogger('FAPS Image Stiching Service')
 logger.setLevel(logging.DEBUG | logging.INFO | logging.WARNING | logging.ERROR | logging.CRITICAL)
-
-
-TRANSFORMATION_MATRICE = {
-    "CAMERA_PARAMETER": "TransformationMatrix/camera_parameter.yaml",
-    "PRODUCT": "TransformationMatrix/Product_world3D.yaml",
-    "MAGAZIN_0": "TransformationMatrix/Magazin_0_world3D.yaml",
-    "MAGAZIN_1": "TransformationMatrix/Magazin_1_world3D.yaml",
-    "MAGAZIN_2": "TransformationMatrix/Magazin_2_world3D.yaml",
-    "MAGAZIN_3": "TransformationMatrix/Magazin_3_world3D.yaml",
-    "MAGAZIN_4": "TransformationMatrix/Magazin_4_world3D.yaml"
-}
-IMG_W = 1024
-IMG_H = 768
-
-TOP_DIRECTORY = os.path.dirname(os.path.abspath(__file__))
-
 
 class APIService:
     """This class is the class holdinfg the set of instruction that will be executed to the demonstrator."""
@@ -92,45 +73,6 @@ class APIService:
 
         self.current_energy_price = 2.0
 
-        # read the camera intrinsic parameters
-        logger.info('Read the camera intrinsic parameters')
-        with open(TRANSFORMATION_MATRICE["CAMERA_PARAMETER"]) as f:
-            loadeddict = yaml.load(f, Loader=yaml.BaseLoader)
-            self.mtx = loadeddict.get('camera_matrix')
-            self.dist = loadeddict.get('dist_coeff')
-            self.mtx = np.array(self.mtx, dtype=np.float)
-            self.dist = np.array(self.dist, dtype=np.float)
-            self.newcameramtx, self.roi = cv2.getOptimalNewCameraMatrix(self.mtx,
-                                                                        self.dist,
-                                                                        (IMG_W, IMG_H),
-                                                                        1,
-                                                                        (IMG_W, IMG_H))
-
-        # Initialize the transformation matrices
-        self.transformation_matrices = {
-            "PRODUCT": self.get_transformation_matrix(TRANSFORMATION_MATRICE["PRODUCT"]),
-            "MAGAZIN_0": self.get_transformation_matrix(TRANSFORMATION_MATRICE["MAGAZIN_0"]),
-            "MAGAZIN_1": self.get_transformation_matrix(TRANSFORMATION_MATRICE["MAGAZIN_1"]),
-            "MAGAZIN_2": self.get_transformation_matrix(TRANSFORMATION_MATRICE["MAGAZIN_2"]),
-            "MAGAZIN_3": self.get_transformation_matrix(TRANSFORMATION_MATRICE["MAGAZIN_3"]),
-            "MAGAZIN_4": self.get_transformation_matrix(TRANSFORMATION_MATRICE["MAGAZIN_4"])
-        }
-
-    def get_transformation_matrix(self, path):
-        target_f = os.path.normpath(TOP_DIRECTORY + "/" + path)
-        with open(target_f) as f:
-            loadeddict = yaml.load(f, Loader=yaml.BaseLoader)
-            camera_matrix = loadeddict.get('camera_matrix')
-            dist_coeff = loadeddict.get('dist_coeff')
-            rvect = loadeddict.get('rvect')
-            tvec = loadeddict.get('tvec')
-            return {
-                "camera_matrix": np.array(camera_matrix, dtype=np.float),
-                "dist_coeff": np.array(dist_coeff, dtype=np.float),
-                "rvect": np.array(rvect, dtype=np.float),
-                "tvec": np.array(tvec, dtype=np.float)
-            }
-
     def incoming_picture_marker_callback(self, ch, method, properties, data):
         logger.info("Incoming picture markers")
         body = json.loads(data)
@@ -181,180 +123,177 @@ class APIService:
             Connect the FAPSDemonstratorAPI to the demonstrator.
         :return true if the connect has been established or false otherwise.
         """
-        while(True):
-            self.connection = pika.BlockingConnection(pika.ConnectionParameters(
-                port=_port,
-                host=_url,
-                credentials=pika.PlainCredentials(_user, _passwd))
-            )
-            self.channel = self.connection.channel()
 
-            self.exchange_order_name = _exchange_order
-            self.exchange_order =self.channel.exchange_declare(
-                exchange=_exchange_order,
-                passive=False,
-                durable=False,
-                exchange_type='fanout'
-            )
+        self.connection = pika.BlockingConnection(pika.ConnectionParameters(
+            port=_port,
+            host=_url,
+            credentials=pika.PlainCredentials(_user, _passwd))
+        )
+        self.channel = self.connection.channel()
 
-            self.exchange_image_processing_name = _exchange_image_processing
-            self.exchange_image_processing = self.channel.exchange_declare(
-                exchange=_exchange_image_processing,
-                passive=False,
-                durable=False,
-                exchange_type='fanout'
-            )
+        self.exchange_order_name = _exchange_order
+        self.exchange_order =self.channel.exchange_declare(
+            exchange=_exchange_order,
+            passive=False,
+            durable=False,
+            exchange_type='fanout'
+        )
 
-            self.exchange_image_processing_pub_name = _exchange_image_processing_pub
-            self.exchange_image_processing = self.channel.exchange_declare(
-                exchange=_exchange_image_processing_pub,
-                passive=False,
-                durable=False,
-                exchange_type='fanout'
-            )
+        self.exchange_image_processing_name = _exchange_image_processing
+        self.exchange_image_processing = self.channel.exchange_declare(
+            exchange=_exchange_image_processing,
+            passive=False,
+            durable=False,
+            exchange_type='fanout'
+        )
 
-            self.exchange_order_processing_result_pub_name = _exchange_order_processing_result_pub
-            self.exchange_order_processing_result_pub = self.channel.exchange_declare(
-                exchange=_exchange_order_processing_result_pub,
-                passive=False,
-                durable=False,
-                exchange_type='fanout'
-            )
+        self.exchange_image_processing_pub_name = _exchange_image_processing_pub
+        self.exchange_image_processing = self.channel.exchange_declare(
+            exchange=_exchange_image_processing_pub,
+            passive=False,
+            durable=False,
+            exchange_type='fanout'
+        )
 
-            self.exchange_robot_data_name = _exchange_robot_data
-            self.exchange_robot_data = self.channel.exchange_declare(
-                exchange=_exchange_robot_data,
-                passive=False,
-                durable=False,
-                exchange_type='fanout'
-            )
+        self.exchange_order_processing_result_pub_name = _exchange_order_processing_result_pub
+        self.exchange_order_processing_result_pub = self.channel.exchange_declare(
+            exchange=_exchange_order_processing_result_pub,
+            passive=False,
+            durable=False,
+            exchange_type='fanout'
+        )
 
-            self.exchange_conveyor_data_name = _exchange_conveyor_data
-            self.exchange_conveyor_data = self.channel.exchange_declare(
-                exchange=_exchange_conveyor_data,
-                passive=False,
-                durable=False,
-                exchange_type='fanout'
-            )
+        self.exchange_robot_data_name = _exchange_robot_data
+        self.exchange_robot_data = self.channel.exchange_declare(
+            exchange=_exchange_robot_data,
+            passive=False,
+            durable=False,
+            exchange_type='fanout'
+        )
 
-            self.exchange_energy_price_data_name = _exchange_energy_price_data
-            self.exchange_energy_price_data = self.channel.exchange_declare(
-                exchange=_exchange_energy_price_data,
-                passive=False,
-                durable=False,
-                exchange_type='fanout'
-            )
+        self.exchange_conveyor_data_name = _exchange_conveyor_data
+        self.exchange_conveyor_data = self.channel.exchange_declare(
+            exchange=_exchange_conveyor_data,
+            passive=False,
+            durable=False,
+            exchange_type='fanout'
+        )
 
-            self.exchange_conveyor_pub_name = _exchange_conveyor_pub
-            self.exchange_conveyor_pub = self.channel.exchange_declare(
-                exchange=_exchange_conveyor_pub,
-                passive=False,
-                durable=False,
-                exchange_type='fanout'
-            )
+        self.exchange_energy_price_data_name = _exchange_energy_price_data
+        self.exchange_energy_price_data = self.channel.exchange_declare(
+            exchange=_exchange_energy_price_data,
+            passive=False,
+            durable=False,
+            exchange_type='fanout'
+        )
 
-            self.queue_order = self.channel.queue_declare(
-                queue=_queue_order,
-                durable=False,
-                exclusive=False,
-                auto_delete=True
-            ).method.queue
-            self.queue_image_processing = self.channel.queue_declare(
-                queue=_queue_image_processing,
-                durable=False,
-                exclusive=False,
-                auto_delete=True
-            ).method.queue
-            self.queue_image_processing_pub = self.channel.queue_declare(
-                queue=_queue_image_processing_pub,
-                durable=False,
-                exclusive=False,
-                auto_delete=True
-            ).method.queue
-            self.queue_order_processing_result_pub = self.channel.queue_declare(
-                queue=_queue_order_processing_result_pub,
-                durable=False,
-                exclusive=False,
-                auto_delete=True,
-            ).method.queue
+        self.exchange_conveyor_pub_name = _exchange_conveyor_pub
+        self.exchange_conveyor_pub = self.channel.exchange_declare(
+            exchange=_exchange_conveyor_pub,
+            passive=False,
+            durable=False,
+            exchange_type='fanout'
+        )
 
-            self.queue_robot_data = self.channel.queue_declare(
-                queue=_queue_robot_data,
-                durable=False,
-                exclusive=False,
-                auto_delete=True,
-            ).method.queue
+        self.queue_order = self.channel.queue_declare(
+            queue=_queue_order,
+            durable=False,
+            exclusive=False,
+            auto_delete=True
+        ).method.queue
+        self.queue_image_processing = self.channel.queue_declare(
+            queue=_queue_image_processing,
+            durable=False,
+            exclusive=False,
+            auto_delete=True
+        ).method.queue
+        self.queue_image_processing_pub = self.channel.queue_declare(
+            queue=_queue_image_processing_pub,
+            durable=False,
+            exclusive=False,
+            auto_delete=True
+        ).method.queue
+        self.queue_order_processing_result_pub = self.channel.queue_declare(
+            queue=_queue_order_processing_result_pub,
+            durable=False,
+            exclusive=False,
+            auto_delete=True,
+        ).method.queue
 
-            self.queue_conveyor_data = self.channel.queue_declare(
-                queue=_queue_conveyor_data,
-                durable=False,
-                exclusive=False,
-                auto_delete=True,
-            ).method.queue
+        self.queue_robot_data = self.channel.queue_declare(
+            queue=_queue_robot_data,
+            durable=False,
+            exclusive=False,
+            auto_delete=True,
+        ).method.queue
 
-            self.queue_energy_price_data = self.channel.queue_declare(
-                queue=_queue_energy_price_data,
-                durable=False,
-                exclusive=False,
-                auto_delete=True,
-            ).method.queue
+        self.queue_conveyor_data = self.channel.queue_declare(
+            queue=_queue_conveyor_data,
+            durable=False,
+            exclusive=False,
+            auto_delete=True,
+        ).method.queue
 
-            self.queue_conveyor_pub = self.channel.queue_declare(
-                queue=_queue_conveyor_pub,
-                durable=False,
-                exclusive=False,
-                auto_delete=True,
-            ).method.queue
+        self.queue_energy_price_data = self.channel.queue_declare(
+            queue=_queue_energy_price_data,
+            durable=False,
+            exclusive=False,
+            auto_delete=True,
+        ).method.queue
 
-            self.channel.queue_bind(exchange=_exchange_order, queue=self.queue_order, routing_key='')
-            self.channel.queue_bind(exchange=_exchange_image_processing,
-                                    queue=self.queue_image_processing, routing_key='')
-            self.channel.queue_bind(exchange=_exchange_image_processing_pub,
-                                    queue=self.queue_image_processing_pub, routing_key='')
-            self.channel.queue_bind(exchange=_exchange_order_processing_result_pub,
-                                    queue=self.queue_order_processing_result_pub, routing_key='')
-            self.channel.queue_bind(exchange=_exchange_robot_data,
-                                    queue=self.queue_robot_data, routing_key='')
-            self.channel.queue_bind(exchange=_exchange_conveyor_data,
-                                    queue=self.queue_conveyor_data, routing_key='')
-            self.channel.queue_bind(exchange=_exchange_energy_price_data,
-                                    queue=self.queue_energy_price_data, routing_key='')
+        self.queue_conveyor_pub = self.channel.queue_declare(
+            queue=_queue_conveyor_pub,
+            durable=False,
+            exclusive=False,
+            auto_delete=True,
+        ).method.queue
 
-            self.channel.queue_bind(exchange=_exchange_conveyor_pub,
-                                     queue=self.queue_conveyor_pub, routing_key='')
+        self.channel.queue_bind(exchange=_exchange_order, queue=self.queue_order, routing_key='')
+        self.channel.queue_bind(exchange=_exchange_image_processing,
+                                queue=self.queue_image_processing, routing_key='')
+        self.channel.queue_bind(exchange=_exchange_image_processing_pub,
+                                queue=self.queue_image_processing_pub, routing_key='')
+        self.channel.queue_bind(exchange=_exchange_order_processing_result_pub,
+                                queue=self.queue_order_processing_result_pub, routing_key='')
+        self.channel.queue_bind(exchange=_exchange_robot_data,
+                                queue=self.queue_robot_data, routing_key='')
+        self.channel.queue_bind(exchange=_exchange_conveyor_data,
+                                queue=self.queue_conveyor_data, routing_key='')
+        self.channel.queue_bind(exchange=_exchange_energy_price_data,
+                                queue=self.queue_energy_price_data, routing_key='')
 
-            # bind the call back to the demonstrator FAPSDemonstratorAPI and start listening
-            self.channel.basic_consume(on_message_callback=_callback_order, queue=self.queue_order, auto_ack=True)
-            self.channel.basic_consume(on_message_callback=_callback_image_processing, queue=self.queue_image_processing,
-                                       auto_ack=True)
-            self.channel.basic_consume(on_message_callback=_callback_conveyor_data,
-                                       queue=self.queue_conveyor_data,
-                                       auto_ack=True)
-            self.channel.basic_consume(on_message_callback=_callback_robot_data,
-                                       queue=self.queue_robot_data,
-                                       auto_ack=True)
-            self.channel.basic_consume(on_message_callback=_callback_energy_price_data,
-                                       queue=self.queue_energy_price_data,
-                                       auto_ack=True)
+        self.channel.queue_bind(exchange=_exchange_conveyor_pub,
+                                 queue=self.queue_conveyor_pub, routing_key='')
 
-            try:
-                self.channel.start_consuming()
-            except KeyboardInterrupt:
-                self.channel.stop_consuming()
-                self.connection.close()
-                break
-            except pika.exceptions.ConnectionClosedByBroker:
-                # Uncomment this to make the example not attempt recovery
-                # from server-initiated connection closure, including
-                # when the node is stopped cleanly
-                # except pika.exceptions.ConnectionClosedByBroker:
-                #     pass
-                continue
-            except pika.exceptions.AMQPConnectionError:
-                logger.warning("Connection was closed, retrying...")
-                continue
+        # bind the call back to the demonstrator FAPSDemonstratorAPI and start listening
+        self.channel.basic_consume(on_message_callback=_callback_order, queue=self.queue_order, auto_ack=True)
+        self.channel.basic_consume(on_message_callback=_callback_image_processing, queue=self.queue_image_processing,
+                                   auto_ack=True)
+        self.channel.basic_consume(on_message_callback=_callback_conveyor_data,
+                                   queue=self.queue_conveyor_data,
+                                   auto_ack=True)
+        self.channel.basic_consume(on_message_callback=_callback_robot_data,
+                                   queue=self.queue_robot_data,
+                                   auto_ack=True)
+        self.channel.basic_consume(on_message_callback=_callback_energy_price_data,
+                                   queue=self.queue_energy_price_data,
+                                   auto_ack=True)
 
-            return self.connection, self.channel
+        try:
+            self.channel.start_consuming()
+        except KeyboardInterrupt:
+            self.channel.stop_consuming()
+            self.connection.close()
+        except pika.connection.exceptions.ConnectionClosedByBroker:
+            # Uncomment this to make the example not attempt recovery
+            # from server-initiated connection closure, including
+            # when the node is stopped cleanly
+            # except pika.exceptions.ConnectionClosedByBroker:
+            pass
+        except pika.connection.exceptions.AMQPConnectionError:
+            logger.warning("Connection was closed, retrying...")
+
+        return self.connection, self.channel
 
     def start_scanning_magazin(self, order):
         if self.demonstrator_program.connect():
@@ -416,104 +355,6 @@ class APIService:
         assert int(abs(wcPoint[2] - z) * (10 ** 8)) == 0
         wcPoint[2] = z
         return wcPoint
-
-    # def process_order_pick_and_place(self, order, image_marker_map):
-    #     if self.demonstrator_program.connect():
-    #         self.demonstrator_program.reset()
-    #         pick_positions = []
-    #         # Search for the magazin having the product to pack
-    #         for p in order["list"]:
-    #             try:
-    #                 _status, p_magazin, p_name, p_class_id, p_box, p_score = self.search_product_and_pick_position(p)
-    #                 if p_box is not None:
-    #                     y1, x1, y2, x2 = p_box[0], p_box[1], p_box[2], p_box[3]
-    #                     wcPoint = self.ground_project_point(image_point=[(x1 + x2) / 2, (y1 + y2) / 2],
-    #                                                         camera_matrix=self.mtx,
-    #                                                         dist_coeffs= self.dist,
-    #                                                         rvec=self.transformation_matrices[p_magazin]["rvect"],
-    #                                                         tvec=self.transformation_matrices[p_magazin]["tvec"],
-    #                                                         z=-100.0
-    #                                                         )
-    #                     # pick_positions.append([wcPoint[0, 0], wcPoint[1, 0], wcPoint[2, 0]])
-    #                     # TODO: remenber to update
-    #                     pick_positions.append([wcPoint[0, 0], wcPoint[1, 0] + 5, wcPoint[2, 0]])
-    #                 else:
-    #                     logger.error("Product {} was not found".format(p))
-    #                     print("Product {} was not found".format(p))
-    #                     return False
-    #             except:
-    #                 logger.error("Product {} was not found".format(p))
-    #                 print("Product {} was not found".format(p))
-    #                 return False
-    #
-    #         # Generate the program from the Pick positions
-    #         # Add some tricks to simulate an AI Program
-    #         _count_place = 0
-    #         _time_to_wait = 5
-    #         for wc in pick_positions:
-    #             if self.current_energy_price <= 1.00:
-    #                 self.demonstrator_program.append_all_instructions(
-    #                     utils.set_velocity(
-    #                         target_velocity=90,
-    #                         execute=False
-    #                     )
-    #                 )
-    #                 _time_to_wait = 5
-    #                 self.demonstrator_program.append_all_instructions(utils.pick_and_place_object(
-    #                     object_position=wc,
-    #                     place_destination=PRODUCT_PLACE_POSITION_IN_BOX[self.target_position_counter])
-    #                 )
-    #             elif self.current_energy_price <= 2.00:
-    #                 self.demonstrator_program.append_all_instructions(
-    #                     utils.set_velocity(
-    #                         target_velocity=70,
-    #                         execute=False
-    #                     )
-    #                 )
-    #                 _time_to_wait = 5
-    #                 self.demonstrator_program.append_all_instructions(utils.pick_and_place_object(
-    #                     object_position=wc,
-    #                     place_destination=PRODUCT_PLACE_POSITION_IN_BOX[self.target_position_counter])
-    #                 )
-    #             elif self.current_energy_price <= 3.00:
-    #                 self.demonstrator_program.append_all_instructions(
-    #                     utils.set_velocity(
-    #                         target_velocity=30,
-    #                         execute=False
-    #                     )
-    #                 )
-    #                 _time_to_wait = 10
-    #                 self.demonstrator_program.append_all_instructions(utils.pick_and_place_object(
-    #                     object_position=wc,
-    #                     place_destination=PRODUCT_PLACE_POSITION_IN_BOX[self.target_position_counter])
-    #                 )
-    #             else:
-    #                 self.demonstrator_program.append_all_instructions(
-    #                     utils.set_velocity(
-    #                         target_velocity=30,
-    #                         execute=False
-    #                     )
-    #                 )
-    #                 _time_to_wait = 10
-    #                 self.demonstrator_program.append_all_instructions(utils.pick_and_place_object_only_one_axis(
-    #                     object_position=wc,
-    #                     place_destination=PRODUCT_PLACE_POSITION_IN_BOX[self.target_position_counter])
-    #                 )
-    #
-    #             self.target_position_counter = self.target_position_counter + 1
-    #             _count_place = _count_place + 7
-    #             if self.target_position_counter >= len(PRODUCT_PLACE_POSITION_IN_BOX):
-    #                 self.target_position_counter = 0
-    #
-    #         self.demonstrator_program.execute()
-    #
-    #         # Make the callback for the Conveyor
-    #         threading.Timer(_count_place + _time_to_wait, self.set_conveyor_signal_achse_fertig).start()
-    #
-    #         return True
-    #     else:
-    #         logger.warning('Connection cannot be established to the Demonstrator')
-    #         return False
 
     def set_conveyor_order_signal(self):
         data = {
