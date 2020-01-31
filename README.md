@@ -91,6 +91,9 @@ Please make sure you are in the FAPS Network:
 Credits
 -------------
 Jupiter Bakakeu (jupiter.bakakeu@faps.fau.de/jupiter.bakakeu@gmail.com)
+
+# API Token
+pypi-AgENdGVzdC5weXBpLm9yZwIkNjdkNzU4OGUtYTQyZS00NDlhLTgyMDUtZDg3MDI0ZGRhY2I2AAIleyJwZXJtaXNzaW9ucyI6ICJ1c2VyIiwgInZlcnNpb24iOiAxfQAABiBHZBBurOj8tHPYIQrm7nPh9h-4pT4AovP3abXC34kbEw
    
 License
 -------------
