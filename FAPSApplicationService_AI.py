@@ -67,6 +67,9 @@ class Service:
         self.exchange_conveyor_pub = None
         self.exchange_conveyor_pub_name = None
 
+        self.exchange_energy_price_data = None
+        self.exchange_energy_price_data_name = None
+
         self.queue_order = None
         self.queue_image_processing = None
         self.queue_image_processing_pub = None
@@ -74,6 +77,8 @@ class Service:
 
         self.queue_conveyor_data = None
         self.queue_conveyor_pub = None
+
+        self.queue_energy_price_data = None
 
         self.demonstrator_program = Program()
 
@@ -85,6 +90,8 @@ class Service:
 
         # Syncho mit Conveyor
         self.Produkt_Band2_Bereit = False
+
+        self.current_energy_price = 2.0
 
         # read the camera intrinsic parameters
         logger.info('Read the camera intrinsic parameters')
@@ -144,6 +151,11 @@ class Service:
         _DB = _value['DB33']
         self.Produkt_Band2_Bereit = _DB['Produkt_Band2_Bereit']
 
+    def energy_price_data_callback(self, ch, method, properties, data):
+        body = json.loads(data)
+        _value = body['current_energy_price']
+        self.current_energy_price = _value
+
     def incoming_order_signals_callback(self, ch, method, properties, data):
         logger.info("Incoming Order")
         body = json.loads(data)
@@ -163,11 +175,14 @@ class Service:
                                     _queue_order_processing_result_pub,
                                     _exchange_conveyor_data,
                                     _queue_conveyor_data,
+                                    _exchange_energy_price_data,
+                                    _queue_energy_price_data,
                                     _exchange_conveyor_pub,
                                     _queue_conveyor_pub,
                                     _callback_order,
                                     _callback_image_processing,
-                                    _callback_conveyor_data):
+                                    _callback_conveyor_data,
+                                    _callback_energy_price_data):
         """
             Connect the FAPSDemonstratorAPI to the demonstrator.
         :return true if the connect has been established or false otherwise.
@@ -220,6 +235,14 @@ class Service:
                 exchange_type='fanout'
             )
 
+            self.exchange_energy_price_data_name = _exchange_energy_price_data
+            self.exchange_energy_price_data = self.channel.exchange_declare(
+                exchange=_exchange_energy_price_data,
+                passive=False,
+                durable=False,
+                exchange_type='fanout'
+            )
+
             self.exchange_conveyor_pub_name = _exchange_conveyor_pub
             self.exchange_conveyor_pub = self.channel.exchange_declare(
                 exchange=_exchange_conveyor_pub,
@@ -260,6 +283,13 @@ class Service:
                 auto_delete=True,
             ).method.queue
 
+            self.queue_energy_price_data = self.channel.queue_declare(
+                queue=_queue_energy_price_data,
+                durable=False,
+                exclusive=False,
+                auto_delete=True,
+            ).method.queue
+
             self.queue_conveyor_pub = self.channel.queue_declare(
                 queue=_queue_conveyor_pub,
                 durable=False,
@@ -276,6 +306,9 @@ class Service:
                                     queue=self.queue_order_processing_result_pub, routing_key='')
             self.channel.queue_bind(exchange=_exchange_conveyor_data,
                                     queue=self.queue_conveyor_data, routing_key='')
+            self.channel.queue_bind(exchange=_exchange_energy_price_data,
+                                    queue=self.queue_energy_price_data, routing_key='')
+
             self.channel.queue_bind(exchange=_exchange_conveyor_pub,
                                      queue=self.queue_conveyor_pub, routing_key='')
 
@@ -285,6 +318,9 @@ class Service:
                                        auto_ack=True)
             self.channel.basic_consume(on_message_callback=_callback_conveyor_data,
                                        queue=self.queue_conveyor_data,
+                                       auto_ack=True)
+            self.channel.basic_consume(on_message_callback=_callback_energy_price_data,
+                                       queue=self.queue_energy_price_data,
                                        auto_ack=True)
 
             try:
@@ -403,25 +439,72 @@ class Service:
                     return False
 
             # Generate the program from the Pick positions
+            # Add some tricks to simulate an AI Program
             _count_place = 0
+            _time_to_wait = 5
             for wc in pick_positions:
-                self.demonstrator_program.append_all_instructions(utils.pick_and_place_object(
-                    object_position=wc,
-                    place_destination=PRODUCT_PLACE_POSITION_IN_BOX[self.target_position_counter])
-                )
+                if self.current_energy_price <= 1.00:
+                    self.demonstrator_program.append_all_instructions(
+                        utils.set_velocity(
+                            target_velocity=90,
+                            execute=False
+                        )
+                    )
+                    _time_to_wait = 5
+                    self.demonstrator_program.append_all_instructions(utils.pick_and_place_object(
+                        object_position=wc,
+                        place_destination=PRODUCT_PLACE_POSITION_IN_BOX[self.target_position_counter])
+                    )
+                elif self.current_energy_price <= 2.00:
+                    self.demonstrator_program.append_all_instructions(
+                        utils.set_velocity(
+                            target_velocity=70,
+                            execute=False
+                        )
+                    )
+                    _time_to_wait = 5
+                    self.demonstrator_program.append_all_instructions(utils.pick_and_place_object(
+                        object_position=wc,
+                        place_destination=PRODUCT_PLACE_POSITION_IN_BOX[self.target_position_counter])
+                    )
+                elif self.current_energy_price <= 3.00:
+                    self.demonstrator_program.append_all_instructions(
+                        utils.set_velocity(
+                            target_velocity=30,
+                            execute=False
+                        )
+                    )
+                    _time_to_wait = 10
+                    self.demonstrator_program.append_all_instructions(utils.pick_and_place_object(
+                        object_position=wc,
+                        place_destination=PRODUCT_PLACE_POSITION_IN_BOX[self.target_position_counter])
+                    )
+                else:
+                    self.demonstrator_program.append_all_instructions(
+                        utils.set_velocity(
+                            target_velocity=30,
+                            execute=False
+                        )
+                    )
+                    _time_to_wait = 10
+                    self.demonstrator_program.append_all_instructions(utils.pick_and_place_object_only_one_axis(
+                        object_position=wc,
+                        place_destination=PRODUCT_PLACE_POSITION_IN_BOX[self.target_position_counter])
+                    )
+
                 self.target_position_counter = self.target_position_counter + 1
                 _count_place = _count_place + 7
                 if self.target_position_counter >= len(PRODUCT_PLACE_POSITION_IN_BOX):
                     self.target_position_counter = 0
 
             #  Start the execution
-            while(self.Produkt_Band2_Bereit is False):
+            while self.Produkt_Band2_Bereit is False:
                 time.sleep(.300)
 
             self.demonstrator_program.execute()
 
             # Make the callback for the Conveyor
-            threading.Timer(_count_place + 5, self.set_conveyor_signal).start()
+            threading.Timer(_count_place + _time_to_wait, self.set_conveyor_signal).start()
 
             return True
         else:
@@ -482,9 +565,12 @@ if __name__ == '__main__':
         _queue_order_processing_result_pub="FAPS_DEMONSTRATOR_OrderProcessing_Results",
         _exchange_conveyor_data="FAPS_DEMONSTRATOR_LiveStreamData_ConveyorData",
         _queue_conveyor_data="FAPS_DEMONSTRATOR_LiveStreamData_ConveyorData_API",
+        _exchange_energy_price_data="FAPS_DEMONSTRATOR_CurrentEnergyPrice",
+        _queue_energy_price_data="FAPS_DEMONSTRATOR_CurrentEnergyPrice",
         _exchange_conveyor_pub="FAPS_DEMONSTRATOR_Conveyor_DataFromCloud",
         _queue_conveyor_pub="FAPS_DEMONSTRATOR_Conveyor_DataFromCloud_API",
         _callback_order=service.incoming_order_signals_callback,
         _callback_image_processing=service.incoming_picture_marker_callback,
-        _callback_conveyor_data=service.conveyor_data_callback
+        _callback_conveyor_data=service.conveyor_data_callback,
+        _callback_energy_price_data=service.energy_price_data_callback
     )
