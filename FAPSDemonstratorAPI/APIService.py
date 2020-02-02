@@ -19,14 +19,23 @@ logging.basicConfig(format='%(asctime)-15s [%(levelname)] [%(name)-12s] %(messag
 logger = logging.getLogger('FAPS Image Stiching Service')
 logger.setLevel(logging.DEBUG | logging.INFO | logging.WARNING | logging.ERROR | logging.CRITICAL)
 
-class APIService:
+
+class APIService(threading.Thread):
     """This class is the class holdinfg the set of instruction that will be executed to the demonstrator."""
 
-    def __init__(self, publish):
+    def __init__(self, publish, endpoint, port,user, password, threadLock):
+        threading.Thread.__init__(self)
+        self.endpoint = endpoint
+        self.port = port
+        self.user = user
+        self.password = password
+        self.threadLock = threadLock
+
         self.image_marker_map = {}
         self.robot_data = {}
         self.conveyor_data = {}
         self.current_order = {}
+        self.current_energy_price = 2.0
 
         self.publish = publish
         self.connection = None
@@ -71,33 +80,41 @@ class APIService:
         self.newcameramtx = None
         self.roi = None
 
-        self.current_energy_price = 2.0
-
     def incoming_picture_marker_callback(self, ch, method, properties, data):
         logger.info("Incoming picture markers")
         body = json.loads(data)
         if body["object"]:
+            self.threadLock.acquire()
             self.image_marker_map[body["object"]] = body
+            self.threadLock.release()
 
     def robot_data_callback(self, ch, method, properties, data):
         body = json.loads(data)
         _value = body['value']
+        self.threadLock.acquire()
         self.robot_data = _value['data']
+        self.threadLock.release()
 
     def conveyor_data_callback(self, ch, method, properties, data):
         body = json.loads(data)
         _value = body['value']
+        self.threadLock.acquire()
         self.conveyor_data = _value['DB33']
+        self.threadLock.release()
 
     def energy_price_data_callback(self, ch, method, properties, data):
         body = json.loads(data)
         _value = body['current_energy_price']
+        self.threadLock.acquire()
         self.current_energy_price = _value
+        self.threadLock.release()
 
     def incoming_order_signals_callback(self, ch, method, properties, data):
         logger.info("Incoming Order")
         body = json.loads(data)
+        self.threadLock.acquire()
         self.current_order = body
+        self.threadLock.release()
 
     def connect_and_start_listening(self, _url, _port, _user, _passwd,
                                     _exchange_order,
@@ -296,6 +313,7 @@ class APIService:
         return self.connection, self.channel
 
     def start_scanning_magazin(self, order):
+        self.threadLock.acquire()
         if self.demonstrator_program.connect():
             self.demonstrator_program.reset()
             # Take pictures of the magazin and set the callbacks for pick_and_place
@@ -319,6 +337,7 @@ class APIService:
             self.demonstrator_program.execute()
         else:
             logger.warning('Connection cannot be established to the Demonstrator')
+        self.threadLock.release()
 
     def search_product_and_pick_position(self, product):
         for key, val in self.image_marker_map.items():
@@ -389,3 +408,32 @@ class APIService:
         self.channel.basic_publish(exchange=self.exchange_conveyor_pub_name,
                                    routing_key='',
                                    body=json.dumps(data))
+
+    def run(self):
+        self.connect_and_start_listening(
+            _url=self.endpoint,
+            _port=self.port,
+            _user=self.user,
+            _passwd=self.password,
+            _exchange_order="FAPS_DEMONSTRATOR_OrderManagement_Orders",
+            _queue_order="FAPS_DEMONSTRATOR_OrderManagement_Orders_ChatBot",
+            _exchange_image_processing="FAPS_DEMONSTRATOR_ImageProcessing_ProcessingResults",
+            _queue_image_processing="FAPS_DEMONSTRATOR_ImageProcessing_ProcessingResults_ChatBot",
+            _exchange_image_processing_pub="FAPS_DEMONSTRATOR_ImageProcessing_ProcessingSignals",
+            _queue_image_processing_pub="FAPS_DEMONSTRATOR_ImageProcessing_ProcessingSignals_ChatBot",
+            _exchange_order_processing_result_pub="FAPS_DEMONSTRATOR_OrderProcessing_Results",
+            _queue_order_processing_result_pub="FAPS_DEMONSTRATOR_OrderProcessing_Results_ChatBot",
+            _exchange_conveyor_data="FAPS_DEMONSTRATOR_LiveStreamData_ConveyorData",
+            _exchange_robot_data="FAPS_DEMONSTRATOR_LiveStreamData_MachineData",
+            _queue_robot_data="FAPS_DEMONSTRATOR_LiveStreamData_MachineData_ChatBot",
+            _queue_conveyor_data="FAPS_DEMONSTRATOR_LiveStreamData_ConveyorData_ChatBot",
+            _exchange_energy_price_data="FAPS_DEMONSTRATOR_CurrentEnergyPrice",
+            _queue_energy_price_data="FAPS_DEMONSTRATOR_CurrentEnergyPrice_ChatBot",
+            _exchange_conveyor_pub="FAPS_DEMONSTRATOR_Conveyor_DataFromCloud",
+            _queue_conveyor_pub="FAPS_DEMONSTRATOR_Conveyor_DataFromCloud_ChatBot",
+            _callback_order=self.incoming_order_signals_callback,
+            _callback_image_processing=self.incoming_picture_marker_callback,
+            _callback_robot_data=self.robot_data_callback,
+            _callback_conveyor_data=self.conveyor_data_callback,
+            _callback_energy_price_data=self.energy_price_data_callback
+        )

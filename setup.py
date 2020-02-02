@@ -7,7 +7,7 @@ with open('requirements.txt') as f:
 
 setuptools.setup(
       name='FAPSDemonstratorAPI',
-      version='0.0.5',
+      version='0.0.7',
       description='FAPS Demonstrator FAPSDemonstratorAPI api',
       license='MIT',
       author='FAU - FAPS',
