@@ -4,3 +4,4 @@ __pycache__/
 FAPSDemonstratorAPI.egg-info
 .vscode
 venv
+.idea/workspace.xml
